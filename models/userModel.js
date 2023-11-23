@@ -48,6 +48,7 @@ const userSchema = new mongoose.Schema({
   city: {
     type: String,
     sparse: true,
+<<<<<<< HEAD
   },
   minutes: {
     type: Number,
@@ -64,6 +65,9 @@ const userSchema = new mongoose.Schema({
   gameStatus: {
     type: String,
     default: "not_started",
+=======
+    // index: true,
+>>>>>>> origin/main
   },
   passwordChangedAt: Date,
   passwordResetToken: String,
