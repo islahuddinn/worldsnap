@@ -1,10 +1,7 @@
 const express = require("express");
 const userControler = require("../controllers/userController");
 const authController = require("../controllers/authController");
-<<<<<<< HEAD
 const timeController = require("../controllers/timeController");
-=======
->>>>>>> origin/main
 
 const router = express.Router();
 
@@ -15,13 +12,10 @@ router.patch("/resetPassword/:token", authController.resetPassword);
 
 // protecting all routes ussing protect midleware
 router.use(authController.protect);
-<<<<<<< HEAD
 router.post("/classicPlay", timeController.setAndRetrieveAgreedUponTime);
 
 // router.get("/speedPlay", timeController.startEggTimer);
 // router.get("/soloPlay", timeController.startEggTimer);
-=======
->>>>>>> origin/main
 
 router.patch("/updatePassword", authController.updatePassword);
 router.get("/me", userControler.getMe, userControler.getUser);

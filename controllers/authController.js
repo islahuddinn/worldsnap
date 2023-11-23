@@ -1,9 +1,5 @@
 const crypto = require("crypto");
 const otpGenerator = require("otp-generator");
-<<<<<<< HEAD
-=======
-// const OTP = require("../models/otpModel");
->>>>>>> origin/main
 const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
@@ -38,10 +34,6 @@ const createSendToken = (user, statusCode, res) => {
 
   res.status(statusCode).json({
     status: "success",
-<<<<<<< HEAD
-    code: "statusCode",
-=======
->>>>>>> origin/main
     token,
     data: {
       user,
@@ -55,13 +47,10 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-<<<<<<< HEAD
-=======
     photo: req.body.photo,
     country: req.body.country,
     state: req.body.state,
     city: req.body.city,
->>>>>>> origin/main
   });
   createSendToken(newUser, 201, res);
 });
@@ -177,15 +166,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     .update(req.params.token)
     .digest("hex");
 
-<<<<<<< HEAD
-=======
-  // const hashedToken = otpGenerator.generate(4, {
-  //   upperCaseAlphabets: false,
-  //   lowerCaseAlphabets: false,
-  //   specialChars: false,
-  // });
-
->>>>>>> origin/main
   const user = await User.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() },
