@@ -119,7 +119,6 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.forgetPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on psted email address
   const user = await User.findOne({ email: req.body.email });
-
   if (!user) {
     return next(new AppError("There is no user with email address", 404));
   }
@@ -144,7 +143,6 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
     });
     res.status(200).json({
       status: "success",
-      code: "200",
       message: "Token send to email!",
     });
   } catch (err) {
