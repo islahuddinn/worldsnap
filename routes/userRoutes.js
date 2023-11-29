@@ -2,6 +2,7 @@ const express = require("express");
 const userControler = require("../controllers/userController");
 const authController = require("../controllers/authController");
 const timeController = require("../controllers/timeController");
+const pushNotificationController = require("../controllers/push-notificationController");
 
 const router = express.Router();
 
@@ -13,6 +14,10 @@ router.patch("/resetPassword/:token", authController.resetPassword);
 // protecting all routes ussing protect midleware
 router.use(authController.protect);
 router.post("/classicPlay", timeController.setAndRetrieveAgreedUponTime);
+router.post(
+  "/send-notification",
+  pushNotificationController.sendPushNotification
+);
 
 // router.get("/speedPlay", timeController.startEggTimer);
 // router.get("/soloPlay", timeController.startEggTimer);

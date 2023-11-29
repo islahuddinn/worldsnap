@@ -7,10 +7,17 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const path = require("path");
-// const hpp = require('hpp');
+// const firebase = require("firebase-admin");
+// const serviceAcount = require("./worldsnap-c7668-firebase-adminsdk-rrpzh-e4a68043ba.json");
+// const hpp = require("hpp");
 
 const app = express();
-// app.set('view engine', 'pug');
+
+// firebase.initializeApp({
+//   credential: firebase.credential.cert(serviceAcount),
+// });
+// module.exports = { firebase };
+// // app.set('view engine', 'pug');
 // app.set('views', path.join(__dirname, 'views'));
 
 //1) GLOBAL MIDDLEWARES

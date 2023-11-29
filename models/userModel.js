@@ -13,7 +13,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter an email"],
     unique: true,
-    validate: [validator.isEmail, "Please enter a valid email"],
+    lowercase: true,
+    validate: [
+      {
+        validator: validator.isEmail,
+        message: "Please enter a valid email",
+      },
+      {
+        validator: isEmailExists,
+        message: "User with email address already exists",
+      },
+    ],
   },
   password: {
     type: String,
@@ -33,13 +43,10 @@ const userSchema = new mongoose.Schema({
   photo: {
     type: String,
     sparse: true,
-    // unique: true,
-    // index: true,
   },
   country: {
     type: String,
     sparse: true,
-    // index: true,
   },
   state: {
     type: String,
@@ -75,6 +82,33 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// exports.isEmailExists = async (email, userId) => {
+//   try {
+//     const count = await mongoose.models["User"].countDocuments({
+//       _id: { $ne: userId },
+//       email: email,
+//     });
+//     return count > 0;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+async function isEmailExists(email) {
+  try {
+    if (email) {
+      const count = await mongoose.models["User"].countDocuments({
+        email: email,
+      });
+      return count === 0;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    // Handle the error, log or throw as needed
+    console.error(err);
+    return false;
+  }
+}
 userSchema.pre("save", async function (next) {
   // only runs this function if password was actually modified
   if (!this.isModified("password")) return next();
