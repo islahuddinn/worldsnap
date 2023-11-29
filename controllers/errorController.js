@@ -45,8 +45,7 @@ module.exports = (err, req, res, next) => {
     console.error(err);
   }
 
-  if (process.env.NODE_ENV === "production" && err.name === "Error") {
-    err = new AppError("Something went wrong!", 500, "unknown-error");
+  if (process.env.NODE_ENV === "production") {
   }
 
   switch (err.name) {
