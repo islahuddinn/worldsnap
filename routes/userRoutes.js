@@ -21,7 +21,7 @@ router.post(
 
 // protecting all routes ussing protect midleware
 router.use(authController.protect);
-router.patch("/updateMyPassword", authController.updatePassword);
+// router.patch("/updateMyPassword", authController.updatePassword);
 router.post("/logout", authController.logout);
 router.post("/classicPlay", timeController.setAndRetrieveAgreedUponTime);
 router.post(
@@ -32,7 +32,7 @@ router.post(
 // router.get("/speedPlay", timeController.startEggTimer);
 // router.get("/soloPlay", timeController.startEggTimer);
 
-router.patch("/updatePassword", authController.updatePassword);
+// router.patch("/updatePassword", authController.updatePassword);
 router.get("/me", userControler.getMe, userControler.getUser);
 router.patch("/updateMe", userControler.updateMe);
 router.patch("/updateProfile", userControler.updateUserProfile);

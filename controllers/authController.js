@@ -682,54 +682,54 @@ exports.verifyOtpForResetPassword = catchAsync(async (req, res, next) => {
 
 // ===========UPDATE PASSWORD for already login user=================================
 
-// exports.updatePassword = catchAsync(async (req, res, next) => {
-//   // 1)get user from collection.
-//   const user = await User.findById(req.user.id).select("+password");
-
-//   // check if posted current password is correct
-//   if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
-//     return res.status(400).send({
-//       message: "Your current password is wrong",
-//       success: false,
-//       errorType: "incorrect-old-password",
-//       status: 400,
-//       data: {},
-//     });
-//   }
-//   // if so update password
-//   user.password = req.body.password;
-//   // user.confirmPassword = req.body.confirmPassword;
-//   await user.save();
-//   // Log user in  , send jwt
-//   res.act = loginChecks(user);
-//   createSendToken(
-//     user,
-//     200,
-//     "The password has been updated successfully",
-//     res,
-//     req.body.device
-//   );
-// });
-
 exports.updatePassword = catchAsync(async (req, res, next) => {
-  // get the user from the collection
-  const user = await User.findById(req.user._id).select("+password");
-  // check if the curent password is correct
-  console.log(req.user.id);
-  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
-    return next(
-      new AppError("Your current password is incorrect.", 401, "wrong-password")
-    );
-  }
-  // if so update the password
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
-  await user.save();
-  // remeber in this case user.findbyidandupdate method will not work
+  // 1)get user from collection.
+  const user = await User.findById(req.user.id).select("+password");
 
-  // log user in and send jwt
-  creatSendToken(user, 200, res);
+  // check if posted current password is correct
+  if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
+    return res.status(400).send({
+      message: "Your current password is wrong",
+      success: false,
+      errorType: "incorrect-old-password",
+      status: 400,
+      data: {},
+    });
+  }
+  // if so update password
+  user.password = req.body.password;
+  // user.confirmPassword = req.body.confirmPassword;
+  await user.save();
+  // Log user in  , send jwt
+  res.act = loginChecks(user);
+  creatSendToken(
+    user,
+    200,
+    "The password has been updated successfully",
+    res,
+    req.body.device
+  );
 });
+
+// exports.updatePassword = catchAsync(async (req, res, next) => {
+//   // get the user from the collection
+//   const user = await User.findById(req.user._id).select("+password");
+//   // check if the curent password is correct
+//   console.log(req.user.id);
+//   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+//     return next(
+//       new AppError("Your current password is incorrect.", 401, "wrong-password")
+//     );
+//   }
+//   // if so update the password
+//   user.password = req.body.password;
+//   user.passwordConfirm = req.body.passwordConfirm;
+//   await user.save();
+//   // remeber in this case user.findbyidandupdate method will not work
+
+//   // log user in and send jwt
+//   creatSendToken(user, 200, res);
+// });
 
 exports.logout = catchAsync(async (req, res, next) => {
   const device = req.body.device;
