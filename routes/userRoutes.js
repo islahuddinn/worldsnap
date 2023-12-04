@@ -7,12 +7,22 @@ const pushNotificationController = require("../controllers/push-notificationCont
 const router = express.Router();
 
 router.post("/signup", authController.signup);
+router.post("/verify", authController.verifyEmail);
 router.post("/login", authController.login);
-router.post("/forgetPassword", authController.forgetPassword);
-router.patch("/resetPassword/:token", authController.resetPassword);
+router.post("/sendOTP", authController.sendOTP);
+router.post("/verifyOTP", authController.verifyOtp);
+router.post("/refresh/:token", authController.refresh);
+router.post("/forgetPassword", authController.forgotPassword);
+router.patch("/resetPassword", authController.resetPassword);
+router.post(
+  "/verifyOTPResetPassword",
+  authController.verifyOtpForResetPassword
+);
 
 // protecting all routes ussing protect midleware
 router.use(authController.protect);
+router.patch("/updateMyPassword", authController.updatePassword);
+router.post("/logout", authController.logout);
 router.post("/classicPlay", timeController.setAndRetrieveAgreedUponTime);
 router.post(
   "/send-notification",

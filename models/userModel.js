@@ -1,145 +1,160 @@
-const mongoose = require("mongoose");
-const otpGenerator = require("otp-generator");
-const validator = require("validator");
-const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
+const mongoose = require("mongoose");
+const validator = require("validator");
+const bcrypt = require("bcrypt");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please enter a name"],
-  },
-  email: {
-    type: String,
-    required: [true, "Please enter an email"],
-    unique: true,
-    lowercase: true,
-    validate: [
-      {
-        validator: validator.isEmail,
-        message: "Please enter a valid email",
-      },
-      {
-        validator: isEmailExists,
-        message: "User with email address already exists",
-      },
-    ],
-  },
-  password: {
-    type: String,
-    required: [true, "Please enter a password"],
-    minlength: 8,
-    select: false,
-  },
-  passwordConfirm: {
-    type: String,
-    validate: {
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: "Passwords are not the same",
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      trim: true,
     },
-  },
-  photo: {
-    type: String,
-    sparse: true,
-  },
-  country: {
-    type: String,
-    sparse: true,
-  },
-  state: {
-    type: String,
-    sparse: true,
-  },
-  city: {
-    type: String,
-    sparse: true,
-  },
-  minutes: {
-    type: Number,
-    default: 0,
-  },
-  seconds: {
-    type: Number,
-    default: 0,
-  },
-  milliseconds: {
-    type: Number,
-    default: 0,
-  },
-  gameStatus: {
-    type: String,
-    default: "not_started",
-  },
-  passwordChangedAt: Date,
-  passwordResetToken: String,
-  passwordResetExpires: Date,
-  active: {
-    type: Boolean,
-    default: true,
-    select: false,
-  },
-});
+    email: {
+      type: String,
+      unique: true,
+      required: [true, "must enter email"],
+      //   lowercase: truee,
+      validate: [validator.isEmail, "please provide a valid email"],
+    },
+    number: String,
+    image: {
+      type: String,
+      default:
+        "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg",
+    },
+    password: {
+      type: String,
+      required: [true, "must enter password"],
+      minlength: 8,
+      select: false,
+    },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    active: {
+      type: Boolean,
+      default: true,
+      select: false,
+    },
+    country: {
+      type: String,
+      sparse: true,
+    },
+    state: {
+      type: String,
+      sparse: true,
+    },
+    city: {
+      type: String,
+      sparse: true,
+    },
+    minutes: {
+      type: Number,
+      default: 0,
+    },
+    seconds: {
+      type: Number,
+      default: 0,
+    },
+    milliseconds: {
+      type: Number,
+      default: 0,
+    },
+    gameStatus: {
+      type: String,
+      default: "not_started",
+    },
 
-// exports.isEmailExists = async (email, userId) => {
-//   try {
-//     const count = await mongoose.models["User"].countDocuments({
-//       _id: { $ne: userId },
-//       email: email,
-//     });
-//     return count > 0;
-//   } catch (err) {
-//     throw err;
-//   }
-// };
-async function isEmailExists(email) {
-  try {
-    if (email) {
-      const count = await mongoose.models["User"].countDocuments({
-        email: email,
-      });
-      return count === 0;
-    } else {
-      return false;
-    }
-  } catch (err) {
-    // Handle the error, log or throw as needed
-    console.error(err);
-    return false;
-  }
-}
+    // role: {
+    //   type: String,
+    //   enum: {
+    //     values: ["admin", "user", "guardian"],
+    //     message: "Enter valid role ",
+    //   },
+    //   default: "user",
+    // },
+    // location: {
+    //   type: {
+    //     type: String,
+    //     default: "Point",
+    //   },
+    //   coordinates: { type: [Number], default: [0.0, 0.0] },
+    //   address: String,
+    //   description: String,
+    // },
+    // LiveLocation: {
+    //   type: {
+    //     type: String,
+    //     default: "Point",
+    //   },
+    //   coordinates: { type: [Number], default: [0.0, 0.0] },
+    //   address: String,
+    //   description: String,
+    // },
+    otp: {
+      type: Number,
+    },
+    otpExpires: Date,
+    deviceToken: String,
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+    customerId: String,
+    // subscriptionId: String,
+    // creator: {
+    //   type: mongoose.Schema.ObjectId,
+    //   ref: "User",
+    // },
+    // subscriptionPlan: {
+    //   type: String,
+    //   enum: {
+    //     values: ["free", "yearly"],
+    //     message: "Enter valid plan ",
+    //   },
+    //   default: "free",
+    // },
+    // isNotification: {
+    //   type: Boolean,
+    //   default: true,
+    // },
+    // locationUpdatedAt: Date,
+    // joinLink: Number,
+    // isGuardianActive: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // isLocationLive: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // isDanger: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+  },
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+);
+userSchema.index({ location: "2dsphere" });
+
 userSchema.pre("save", async function (next) {
-  // only runs this function if password was actually modified
+  //only run this function if password id actually modified
   if (!this.isModified("password")) return next();
-
-  // Hash the password with a cost of 12
+  // Hash the password with cost
   this.password = await bcrypt.hash(this.password, 12);
-
-  // Delete the passwordConfirm field
-  this.passwordConfirm = undefined;
+  // remove(stop) the confirmPassword to store in db. require means necessary to input not to save in db.
+  this.confirmPassword = undefined;
   next();
 });
-
-userSchema.pre("save", function (next) {
-  if (!this.isModified("password") || this.isNew) return next();
-
-  this.passwordChangedAt = Date.now() - 2000;
-  next();
-});
-
-userSchema.pre(/^find/, function (next) {
-  // It will point to the current query
-  this.find({ active: { $ne: false } });
-  next();
-});
-
+// password Tester
 userSchema.methods.correctPassword = async function (
-  candidatePassword,
-  userPassword
+  passwordByUser,
+  passwordInDb
 ) {
-  return await bcrypt.compare(candidatePassword, userPassword);
+  return await bcrypt.compare(passwordByUser, passwordInDb);
 };
+
+// ========method to protect routes verifies all about token
 
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
@@ -147,32 +162,24 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
       this.passwordChangedAt.getTime() / 1000,
       10
     );
+    console.log(changedTimestamp, JWTTimestamp);
     return JWTTimestamp < changedTimestamp;
   }
-  // False means the password has not changed
   return false;
 };
 
-userSchema.methods.createPasswordResetToken = function () {
-  // const resetToken = crypto.randomBytes(32).toString("hex");
-  const resetToken = otpGenerator.generate(4, {
-    upperCaseAlphabets: false,
-    lowerCaseAlphabets: false,
-    specialChars: false,
-  });
+// update "passwordChangedAt value in DB whenever we update password "
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000; //here -1000 mili seconds is to make sure that it will not creat any problem in login as some times that gets this
+  next();
+});
 
-  this.passwordResetToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
-
-  // console.log({ resetToken }, this.passwordResetToken);
-  // console.log(resetToken);
-  return resetToken;
-};
-
+// Middleware to only get active=true users
+userSchema.pre(/^find/, function (next) {
+  // here "this" points to the current property`
+  this.find({ active: true });
+  next();
+});
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;

@@ -58,6 +58,7 @@ module.exports = (err, req, res, next) => {
       err = handleDuplicateFieldsDB(err);
       break;
     case "ValidationError":
+    case "EPROTOCOL":
       err = handleValidationErrorDB(err);
       break;
     case "JsonWebTokenError":

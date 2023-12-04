@@ -1,81 +1,77 @@
-const crypto = require("crypto");
-const otpGenerator = require("otp-generator");
 const { promisify } = require("util");
-const jwt = require("jsonwebtoken");
+const { randomUUID: uuid } = require("crypto");
+const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
-const sendEmail = require("../utils/mailSender");
 const AppError = require("../utils/appError");
-const { decoded } = require("punycode");
+const { loginChecks } = require("../utils/login-checks");
+const jwt = require("jsonwebtoken");
+const Email = require("../utils/mailSender");
+// const { findOneAndUpdate, findOne, startSession } = require("../models/");
+const RefreshToken = require("../models/refreshTokenModel");
+const generateOtp = require("../utils/otpGenerator");
+// const cron = require("node-cron");
+const RefreshRecord = require("../models/refreshRecordModel");
+const DeviceSession = require("../models/sessionModel");
 
-const signToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
+const signToken = (id, noExpiry) => {
+  return jwt.sign(
+    { id },
+    process.env.JWT_SECRET,
+    JSON.parse(
+      JSON.stringify({
+        expiresIn: noExpiry ? undefined : process.env.JWT_EXPIRES_IN,
+      })
+    )
+  );
 };
+// ======== function to creat and send token===========
 
-const createSendToken = (user, statusCode, res) => {
-  const token = signToken(user._id);
+const creatSendToken = async (
+  user,
+  statusCode,
+  message,
+  res,
+  device,
+  noExpiry = false
+) => {
+  const token = signToken(user._id, noExpiry);
 
-  // the code bellow is responsible for cookei functionality
+  const logedIn = await RefreshToken.findOne({
+    deviceToken: device.deviceToken,
+    user: user._id,
+  });
+  if (logedIn) {
+    await RefreshToken.findByIdAndDelete(logedIn._id);
+  }
 
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-  };
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
-
-  res.cookie("jwt", token, cookieOptions);
-  // Remove the password from the output
-
-  user.password = undefined;
-
-  res.status(statusCode).json({
-    status: "success",
-    token,
+  const sessions = await DeviceSession.find({ user: user._id });
+  const refreshToken = uuid();
+  await RefreshRecord.create({
+    user: user._id,
+    device: device.id,
+    // createdAt: device.currentTime,
+  });
+  await RefreshToken.create({
+    user: user._id,
+    token: refreshToken,
+    device: device.id,
+    deviceToken: device.deviceToken,
+  });
+  const newUser = await User.findOne({ _id: user._id });
+  return res.status(statusCode).json({
+    success: true,
+    status: statusCode,
+    act: res.act,
+    message,
     data: {
-      user,
+      token,
+      user: newUser,
+      refreshToken,
+      sessions,
     },
   });
 };
-
-exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-  });
-  createSendToken(newUser, 201, res);
-});
-
-exports.login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-
-  // 1) Check if email and password exist
-  if (!email || !password) {
-    return next(
-      new AppError(
-        "Please provide email and password!",
-        400,
-        "missing-credentials"
-      )
-    );
-  }
-
-  // 2) Check if the user exists and the password is correct
-  const user = await User.findOne({ email }).select("+password");
-
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(
-      new AppError("Incorrect email or password", 401, "incorrect-credentials")
-    );
-  }
-
-  // 3) If everything is okay, send a token to the client
-  createSendToken(user, 200, res);
-});
 
 exports.protect = catchAsync(async (req, res, next) => {
   const token = req.headers.authorization;
@@ -84,7 +80,11 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (!token) {
     return next(
-      new AppError("You are not logged in please log in to get access.", 401)
+      new AppError(
+        "You are not logged in please log in to get access.",
+        401,
+        "authentication-error"
+      )
     );
   }
 
@@ -100,7 +100,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     return next(
       new AppError(
         "The User belongging to this token does no longer exist.",
-        401
+        401,
+        "Token-expired"
       )
     );
   }
@@ -109,7 +110,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     return next(
       new AppError(
         "User recently changed the password! please logion again",
-        401
+        401,
+        "authentication-error"
       )
     );
   }
@@ -118,80 +120,606 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = currentUser;
   next();
 });
+// =========SIGNUP USER=====================
+exports.signup = catchAsync(async (req, res, next) => {
+  // let id;
+  // try {
+  //   let obj = await stripe.customers.create({
+  //     name: req.body.name,
+  //     email: req.body.email,
+  //   });
+  //   id = obj.id;
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  // console.log("C_id", id);
+  const user = await User.findOne({ email: req.body.email });
+  if (user) {
+    return res.status(400).json({
+      success: false,
 
-exports.forgetPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on psted email address
+      status: 400,
+      message: "User with given email already exist",
+      errorType: "email-already-exist",
+      data: {},
+    });
+  }
+  const newUser = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    image: req.body.image,
+    // locationUpdatedAt: Date.now(),
+    // customerId: id,
+    password: req.body.password,
+    otp: null,
+    passwordChangedAt: Date.now(),
+  });
+  const otpLength = 4;
+  const otp = generateOtp(otpLength);
+  console.log("Generated OTP:", otp);
+  ////// Sending Email..
+  try {
+    await new Email(newUser, otp).sendWelcome(otp);
+  } catch (error) {
+    console.log(error);
+  }
+  ////// Expires Time
+  // const otpExpires = Date.now() + 1 * 60 * 1000 + 10 * 1000;
+  /////////////////
+
+  console.log(req.body);
+  const userotp = await User.findOne({ email: newUser.email });
+  if (!userotp) {
+    return res.status(400).json({
+      status: 400,
+      success: false,
+      errorType: "wrong-email",
+      data: {},
+    });
+  }
+  const newUserotp = await User.findOneAndUpdate(
+    { email: userotp.email },
+    { otp },
+    { new: true, runValidators: false }
+  );
+
+  console.log(otp);
+
+  res.status(201).json({
+    status: 201,
+    success: true,
+    message: `OTP Sent to your email ${newUser.email}`,
+    data: { user: newUser },
+  });
+});
+// ========= Send  OTP  =====================
+exports.sendOTP = catchAsync(async (req, res, next) => {
+  const otpLength2 = 4;
+  const otp = generateOtp(otpLength2);
+  // console.log(req.body);
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    return next(new AppError("There is no user with email address", 404));
+    return res.status(400).json({
+      status: 400,
+      success: false,
+      errorType: "wrong-email",
+      data: {},
+    });
   }
-  // 2) Generate the rendom reset token
+  const newUser = await User.findOneAndUpdate(
+    { email: req.body.email },
+    { otp },
+    { new: true, runValidators: false }
+  );
+  console.log(otp);
 
-  const resetToken = user.createPasswordResetToken();
+  try {
+    await new Email(newUser, otp).sendWelcome(otp);
+  } catch (error) {
+    console.log(error);
+  }
+
+  console.log("end");
+  res.status(200).json({
+    status: 200,
+    success: true,
+    message: `OTP Sent to your email ${user.email}`,
+    data: {},
+  });
+});
+
+exports.verifyOtp = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({
+    email: req.body.email,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+  // if the token has not expired and there is a user set the new password
+
+  if (!user) {
+    return res.status(400).send({
+      message: "Token may expire",
+      success: false,
+      errorType: "otp-expired",
+      status: 400,
+      data: {},
+    });
+  }
+  if (user.otp != req.body.otp) {
+    return res.status(400).send({
+      message: "Invalid Token",
+      success: false,
+      errorType: "wrong-otp",
+      status: 400,
+      data: {},
+    });
+  }
+
+  res.status(200).json({
+    status: 200,
+    success: true,
+  });
+});
+
+// ===================Refresh Password=================================
+exports.refresh = catchAsync(async (req, res, next) => {
+  const tokenHashed = req.params.token;
+  // console.log("Hahahahahaha");
+  const tokens = await RefreshToken.find({ device: req.body.device.id });
+
+  let done = false;
+  let cycle = 0;
+  for (const token of tokens)
+    bcrypt.compare(tokenHashed, token.token, async (err, result) => {
+      if (done) return;
+      console.log(err, result);
+      if (!(result == false || err)) {
+        const user = await User.findOne({ _id: token.user });
+        const accessToken = signToken(user._id, false);
+        done = true;
+        return res.json({
+          status: 200,
+          success: true,
+          message: "",
+          data: { accessToken },
+        });
+      }
+      cycle += 1;
+    });
+  if (cycle == tokens.length)
+    return res.status(400).send({
+      status: 400,
+      success: false,
+      message: `Invalid refresh token for device ${req.body.device.id}`,
+      data: {},
+    });
+});
+// ===================Verify EMAIL BY OTP===============================
+exports.verifyEmail = catchAsync(async (req, res, next) => {
+  const euser = await User.findOne({ email: req.body.email });
+  if (!euser) {
+    return res.status(400).send({
+      success: false,
+      status: 400,
+      message: "Invalid Email",
+      errorType: "wrong-email",
+      data: {},
+    });
+  }
+
+  const user = await User.findOne({
+    email: req.body.email,
+  });
+  // if the token has not expired and there is a user set the new password
+
+  if (!user) {
+    return res.status(400).send({
+      message: "User not found",
+      success: false,
+      errorType: "user-not-found",
+      status: 400,
+      data: {},
+    });
+  }
+
+  if (!req.body.otp) {
+    return res.status(400).send({
+      success: true,
+      status: 400,
+      message: "Please add otp",
+
+      data: {},
+    });
+  }
+  if (req.body.otp != user.otp) {
+    return res.status(400).send({
+      success: true,
+      status: 400,
+      message: "The given OTP is invalid",
+      errorType: "wrong-otp",
+      data: {},
+    });
+  }
+  const newUser = await User.findOneAndUpdate(
+    { email: req.body.email },
+    { verified: true, otp: null },
+    { new: true }
+  );
+  // res.status(200).send({
+  //   success: true,
+  //   status: 200,
+
+  //   data: {},
+  // });
+
+  res.act = loginChecks(newUser);
+  creatSendToken(
+    newUser,
+    200,
+    "The email has been verified",
+    res,
+    req.body.device
+  );
+});
+//     ====================LOGIN User=========================================
+exports.login = catchAsync(async (req, res, next) => {
+  console.log("route hit for login");
+  const { email, password } = req.body;
+  // check if email and password exist
+  if (!email || !password) {
+    return res.status(400).send({
+      message: "please provide email and password",
+      status: 400,
+      success: false,
+      data: {},
+    });
+  }
+  // check if user exist and password is correct
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user || !(await user.correctPassword(password, user.password))) {
+    return res.status(400).send({
+      message: "Incorrect email or password",
+      errorType: "wrong-password",
+      status: 400,
+      success: false,
+      data: {},
+    });
+  }
+  const logedIn = await RefreshToken.findOne({
+    // device: req.body.device.id,
+    device: req.body.device && req.body.device.id,
+    user: user._id,
+  });
+  console.log(logedIn);
+  if (logedIn) {
+    await RefreshToken.findByIdAndDelete({ _id: logedIn._id });
+  }
+  console.log(user);
+
+  if (user.verified == false) {
+    const otpLength3 = 4;
+    const otp = generateOtp(otpLength3);
+
+    ////// Sending Email..
+    try {
+      await new Email(user, otp).sendWelcome(otp);
+    } catch (error) {
+      console.log(error);
+    }
+    ////// Expires Time
+    // const otpExpires = Date.now() + 1 * 60 * 1000 + 10 * 1000;
+    /////////////////
+    const newUserotp = await User.findOneAndUpdate(
+      { email: user.email },
+      { otp },
+      { new: true, runValidators: false }
+    );
+
+    return res.status(400).send({
+      message: "verification is pending. OTP sent to your email",
+      errorType: "email-not-verify",
+      status: 400,
+      success: false,
+      data: {},
+    });
+  }
+  await User.updateOne(
+    { _id: user._id },
+    {
+      // deviceToken: req.body.device.id,
+      deviceToken: req.body.device && req.body.device.id,
+    }
+  );
+  (user.deviceToken = req.body.device && req.body.device.id),
+    // res.act = loginChecks(user);
+    // creat token from existing function .
+    creatSendToken(user, 200, "Logged In Successfully", res, req.body.device);
+});
+
+// ===========================VERIFY TOKEN BEFORE GETTING DATA=====================
+exports.protect = catchAsync(async (req, res, next) => {
+  // 1) Getting token and check if its there
+  let token;
+  console.log("verifying token....");
+  // console.log(req.headers.authorization);
+  token = req.headers.authorization;
+  // console.log("token is:", token);
+  if (!token) {
+    return res.status(400).send({
+      message: "You are not logged in, please login to get access",
+      status: 400,
+      success: true,
+      data: {},
+    });
+  }
+
+  // Verification of  token
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  console.log("decoded", decoded);
+  // console.log("token verified step 2.");
+  //3) check if the user still exist
+  // console.log(decoded);
+  const currentUser = await User.findById(decoded.id);
+  if (!currentUser) {
+    return res.status(400).send({
+      message: "User not exist now",
+      status: 400,
+      success: false,
+      data: {},
+    });
+  }
+  // console.log("User exist step 3.");
+
+  //check if the user changed the password after the token is issued
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return res.status(400).send({
+      message: "User recently changed password please login again!",
+      status: 400,
+      success: false,
+      data: {},
+    });
+  }
+  console.log("Requested Users id>>>", currentUser._id);
+  //grant access to the protected rout
+  req.user = currentUser;
+  // console.log(currentUser);
+  console.log("verification completed");
+  next();
+});
+
+// //================= Authorization=============
+// //Restrict who can delete tour
+
+// exports.restrictTo = (...roles) => {
+//   return (req, res, next) => {
+//     console.log(req.user.name, roles);
+//     if (!roles.includes(req.user.role)) {
+//       return res.status(403).send({
+//         status: 403,
+//         success: false,
+//         message: "You do not have permission to perform this action",
+//         data: {},
+//       });
+//     }
+//     next();
+//   };
+// };
+
+// // =================================================================================
+
+// // ======== FORGOT PASSWORD AND PASSWORD RESET ================
+
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  console.log("in forgotPassword");
+  // 1) get user on posted email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return res.status(400).send({
+      message: "There is no user with given email address",
+      errorType: "wrong-email",
+      status: 400,
+      success: false,
+      data: {},
+    });
+  }
+
+  // 2) generate the random reset token
+  const otpLength4 = 4;
+  const passwordResetToken = generateOtp(otpLength4);
+  user.passwordResetToken = passwordResetToken;
+
+  user.passwordResetExpires = Date.now() + 1 * 60 * 1000 + 10 * 1000;
+
   await user.save({ validateBeforeSave: false });
 
-  // 3) send it to the user email address
-  const resetUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/api/v1/users/resetPassword/${resetToken}`;
-
-  const message = `Forget your password? submit a patch
-    request with your new password and passwordConfirm to: ${resetUrl}.\n If you dont forget
-    your password, please ignore this email!`;
   try {
-    await sendEmail({
-      email: user.email,
-      subject: "your password reset token is valid for 10 minutes",
-      message,
-    });
+    await new Email(user, passwordResetToken).sendPasswordReset(
+      passwordResetToken
+    );
     res.status(200).json({
-      status: "success",
-      message: "Token send to user email address!",
+      status: 200,
+      success: true,
+      message: "OTP sent to email",
     });
   } catch (err) {
+    console.log(err);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
 
-    return next(
-      new AppError("There was an error sending email. Try again later!"),
-      500
-    );
+    return res.status(400).send({
+      success: false,
+      status: 400,
+      errorType: "wrong-email",
+      message: "There was an error while sending email. please try again later",
+      data: {},
+    });
   }
 });
 
+// ===================RESET PASSWORD===============================
 exports.resetPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on the user.
-  const hashedToken = crypto
-    .createHash("sha256")
-    .update(req.params.token)
-    .digest("hex");
-
   const user = await User.findOne({
-    passwordResetToken: hashedToken,
-    passwordResetExpires: { $gt: Date.now() },
+    email: req.body.email,
+    // passwordResetExpires: { $gt: Date.now() },
   });
-  // 2) If token has not expired and there is user, set the new password
-  if (!user) {
-    return next(new AppError("Token is invalid or expired", 400));
-  }
+  console.log(user);
+  // if the token has not expired and there is a user set the new password
 
+  if (!user) {
+    return res.status(400).send({
+      message: "Token may expire",
+      success: false,
+      errorType: "otp-expired",
+      status: 400,
+      data: {},
+    });
+  }
+  if (user.passwordResetToken != req.body.otp) {
+    return res.status(400).send({
+      message: "Invalid Token",
+      success: false,
+      errorType: "wrong-otp",
+      status: 400,
+      data: {},
+    });
+  }
   user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+  // user.confirmPassword = req.body.confirmPassword;
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
-  await user.save();
-  // 3) Update changePasswordAt property for the user
-  // 4) Log the user in, send the jwt
-  createSendToken(user, 200, res);
+
+  // if (user.role === "guardian" && !user.isGuardianActive) {
+  //   user.isGuardianActive = true;
+  // }
+
+  await user.save({ validateBeforeSave: false });
+
+  // res.act = loginChecks(user);
+  creatSendToken(
+    user,
+    200,
+    "The password has been updated successfully",
+    res,
+    req.body.device
+  );
+
+  // const token = signToken(user._id);
+  // res.status(200).json({
+  //   status: 200,
+  //   success: true,
+  //   act: loginChecks(user),
+  //   token,
+  // });
 });
+
+// exports.resetPassword = catchAsync(async (req, res, next) => {
+//   // 1) Get user based on the user.
+//   // const hashedToken = crypto
+//   //   .createHash("sha256")
+//   //   .update(req.params.token)
+//   //   .digest("hex");
+
+//   const user = await User.findOne({
+//     // passwordResetToken: hashedToken,
+//     email: req.body.email,
+//     // passwordResetExpires: { $gt: Date.now() },
+//   });
+//   console.log(user);
+//   // 2) If token has not expired and there is user, set the new password
+//   if (!user) {
+//     return next(
+//       new AppError("Token is invalid or expired", 400, "token-error")
+//     );
+//   }
+
+//   user.password = req.body.password;
+//   user.passwordConfirm = req.body.passwordConfirm;
+//   user.passwordResetToken = undefined;
+//   user.passwordResetExpires = undefined;
+//   await user.save();
+//   // 3) Update changePasswordAt property for the user
+//   // 4) Log the user in, send the jwt
+//   createSendToken(user, 200, res);
+// });
+
+// ===================Verify OTP for RESET PASSWORD===============================
+exports.verifyOtpForResetPassword = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({
+    email: req.body.email,
+    // passwordResetExpires: { $gt: Date.now() },
+  });
+  // if the token has not expired and there is a user set the new password
+  console.log(user);
+  // console.log(req.body.email);
+  // console.log(Date.now());
+  // console.log(await User.findOne({ email: req.body.email }));
+
+  if (!user) {
+    return res.status(400).send({
+      message: "Token may expire",
+      success: false,
+      errorType: "otp-expired",
+      status: 400,
+      data: {},
+    });
+  }
+  if (user.passwordResetToken != req.body.otp) {
+    return res.status(400).send({
+      message: "Invalid Token",
+      success: false,
+      errorType: "wrong-otp",
+      status: 400,
+      data: {},
+    });
+  }
+
+  res.status(200).json({
+    status: 200,
+    success: true,
+  });
+});
+
+// ===========UPDATE PASSWORD for already login user=================================
+
+// exports.updatePassword = catchAsync(async (req, res, next) => {
+//   // 1)get user from collection.
+//   const user = await User.findById(req.user.id).select("+password");
+
+//   // check if posted current password is correct
+//   if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
+//     return res.status(400).send({
+//       message: "Your current password is wrong",
+//       success: false,
+//       errorType: "incorrect-old-password",
+//       status: 400,
+//       data: {},
+//     });
+//   }
+//   // if so update password
+//   user.password = req.body.password;
+//   // user.confirmPassword = req.body.confirmPassword;
+//   await user.save();
+//   // Log user in  , send jwt
+//   res.act = loginChecks(user);
+//   createSendToken(
+//     user,
+//     200,
+//     "The password has been updated successfully",
+//     res,
+//     req.body.device
+//   );
+// });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // get the user from the collection
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await User.findById(req.user._id).select("+password");
   // check if the curent password is correct
+  console.log(req.user.id);
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
-    return next(new AppError("Your current password is incorrect.", 401));
+    return next(
+      new AppError("Your current password is incorrect.", 401, "wrong-password")
+    );
   }
   // if so update the password
   user.password = req.body.password;
@@ -200,5 +728,16 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // remeber in this case user.findbyidandupdate method will not work
 
   // log user in and send jwt
-  createSendToken(user, 200, res);
+  creatSendToken(user, 200, res);
+});
+
+exports.logout = catchAsync(async (req, res, next) => {
+  const device = req.body.device;
+  await RefreshToken.deleteOne({ device: device.id, user: req.user._id });
+  return res.json({
+    success: true,
+    status: 200,
+    message: "User logged out successfully",
+    data: {},
+  });
 });

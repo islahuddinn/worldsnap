@@ -36,68 +36,158 @@
 
 // module.exports = sendEmail;
 
-const nodeMailer = require("nodemailer");
+///////2222//////
+
+// const nodeMailer = require("nodemailer");
+// const pug = require("pug");
+// const htmlToText = require("html-to-text");
+
+// module.exports = class Email {
+//   constructor(user, url) {
+//     this.to = user.email;
+//     this.firstName = user.name.split(" ")[0];
+//     this.url = url;
+//     this.from = `wordsnap team <${process.env.EMAIL_FROM}>`;
+//   }
+
+//   newTransport() {
+//     if (process.env.NODE_ENV === "production") {
+//       // Use the transport for production (e.g., SendGrid)
+//       // Replace the following with the appropriate transport configuration
+//       return nodeMailer.createTransport({
+//         service: "SendGrid",
+//         auth: {
+//           user: process.env.SENDGRID_USERNAME,
+//           pass: process.env.SENDGRID_PASSWORD,
+//         },
+//       });
+//     }
+
+//     return nodeMailer.createTransport({
+//       host: process.env.EMAIL_HOST,
+//       port: process.env.EMAIL_PORT,
+//       auth: {
+//         user: process.env.EMAIL_USERNAME,
+//         pass: process.env.EMAIL_PASSWORD,
+//       },
+//       tls: {
+//         rejectUnauthorized: false,
+//       },
+//       timeout: 40000,
+//     });
+//   }
+
+//   // Send actual email
+//   async send(templates, subject) {
+//     // Render HTML based on a Pug template
+//     const html = pug.renderFile(
+//       `${__dirname}/../templates/views/${templates}.pug`,
+//       {
+//         firstName: this.firstName,
+//         url: this.url,
+//         subject,
+//       }
+//     );
+
+//     // Define EmailOptions
+//     const mailOptions = {
+//       from: this.from,
+//       to: this.to,
+//       subject,
+//       html,
+//       text: htmlToText.fromString(html), // Convert HTML to plain text
+//     };
+
+//     // Send the email using the transport
+//     await this.newTransport().sendMail(mailOptions);
+//   }
+
+//   async sendWelcome() {
+//     await this.send(
+//       "welcome",
+//       "Welcome to Wordsnap! Your registration is successful."
+//     );
+//   }
+
+//   async sendPasswordReset() {
+//     await this.send(
+//       "passwordReset",
+//       "Your password reset token (valid for 10 minutes)"
+//     );
+//   }
+// };
+
+// ////3333//////
+
+const nodemailer = require("nodemailer");
 const pug = require("pug");
-const htmlToText = require("html-to-text");
 
 module.exports = class Email {
   constructor(user, url) {
     this.to = user.email;
-    this.firstName = user.name.split("")[0];
+    this.firstName = user.name;
+
     this.url = url;
-    this.from = `wordsnap team <${process.env.EMAIL_FROM}>`;
+    this.from = `WordSnap App <${process.env.GMAILUSER}>`;
   }
+
   newTransport() {
-    if (process.env.NODE_ENV === "prduction") {
-      //sandgrid
-      return 1;
-    }
-    return nodeMailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
+    // Send Grid
+    return nodemailer.createTransport({
+      service: "gmail",
+      host: process.env.USER_HOST,
+      // port: process.env.USER_PORT,
       auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
+        user: process.env.GMAILUSER,
+        pass: process.env.GMAILPASS,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      // auth: {
+      //   user: process.env.GMAILUSER,
+
+      //   pass: process.env.GMAILPASS,
+      // },
     });
   }
-  //send actual email
-
   async send(template, subject) {
-    // Render HTML based on a Pug template
-    const html = pug.renderFile(
-      `${__dirname}/../templates/email/${template}.pug`,
-      {
-        firstName: this.firstName,
-        url: this.url,
-        subject,
-      }
-    );
+    console.log(this.from);
+    console.log(this.to);
+    console.log(process.env.GMAILUSER);
+    console.log(process.env.GMAILPASS);
 
-    //Define EmailOptions
+    // 2) Define email options
     const mailOptions = {
       from: this.from,
-      to: this.email,
+      to: this.to,
       subject,
-      html,
-      text: htmlToText.fromString(html),
+      text: template,
     };
+    // 3)Creat a transport and send email
 
     await this.newTransport().sendMail(mailOptions);
   }
-  async sendWelcome() {
-    await this.send("welcome", "welcome to the worldsnap!");
+  async sendWelcome(a) {
+    console.log("sending mail...");
+    await this.send(
+      `Your OTP is: ${a}`,
+      `Email Verification For WorldSnap App`
+    );
   }
-};
-const sendEmail = async (options) => {
-  //define the email options
-  const mailOptions = {
-    from: "worldsnap team <hello@worldsnap.io>",
-    to: options.email,
-    subject: options.subject,
-    text: options.message,
-    //html
-  };
-  //actually send the email
-  await transporter.sendMail(mailOptions);
+
+  // async sendGuardianWelcome(a) {
+  //   console.log("sending mail...");
+  //   await this.send(
+  //     `Welcome, Your Join OTP is: ${a}`,
+  //     `Account Setup Verification For Guardian Trace App`
+  //   );
+  // }
+
+  async sendPasswordReset(a) {
+    await this.send(
+      `Password Reset Code is:${a}`,
+      "Your password reset token ! ( valid for 10 minutes)"
+    );
+  }
 };

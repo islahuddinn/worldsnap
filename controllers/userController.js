@@ -60,7 +60,6 @@ exports.updateUserProfile = catchAsync(async (req, res, next) => {
       country: updateUser.country,
       state: updateUser.state,
       city: updateUser.city,
-      // token: getToken(updateUser._id),
     });
   } else {
     res.status(404).json({
