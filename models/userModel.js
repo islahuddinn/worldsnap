@@ -63,33 +63,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "not_started",
     },
-
-    // role: {
-    //   type: String,
-    //   enum: {
-    //     values: ["admin", "user", "guardian"],
-    //     message: "Enter valid role ",
-    //   },
-    //   default: "user",
-    // },
-    // location: {
-    //   type: {
-    //     type: String,
-    //     default: "Point",
-    //   },
-    //   coordinates: { type: [Number], default: [0.0, 0.0] },
-    //   address: String,
-    //   description: String,
-    // },
-    // LiveLocation: {
-    //   type: {
-    //     type: String,
-    //     default: "Point",
-    //   },
-    //   coordinates: { type: [Number], default: [0.0, 0.0] },
-    //   address: String,
-    //   description: String,
-    // },
     otp: {
       type: Number,
     },
@@ -100,37 +73,6 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
     customerId: String,
-    // subscriptionId: String,
-    // creator: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: "User",
-    // },
-    // subscriptionPlan: {
-    //   type: String,
-    //   enum: {
-    //     values: ["free", "yearly"],
-    //     message: "Enter valid plan ",
-    //   },
-    //   default: "free",
-    // },
-    // isNotification: {
-    //   type: Boolean,
-    //   default: true,
-    // },
-    // locationUpdatedAt: Date,
-    // joinLink: Number,
-    // isGuardianActive: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // isLocationLive: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // isDanger: {
-    //   type: Boolean,
-    //   default: false,
-    // },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
