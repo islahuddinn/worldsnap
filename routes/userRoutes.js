@@ -41,12 +41,7 @@ router.post(
 // router.get("/soloPlay", timeController.startEggTimer);
 
 router.get("/me", userControler.getMe, userControler.getUser);
-router.patch(
-  "/updateMe",
-  userControler.uploadUserPhoto,
-  userControler.resizeUserPhoto,
-  userControler.updateMe
-);
+router.patch("/updateProfile", userControler.updateMe);
 // router.patch("/updateMe", userControler.updateMe);
 // router.patch("/updateProfile", userControler.updateUserProfile);
 // router.delete("/deleteMe", userControler.deleteMe); its not functional yet if required then modify
