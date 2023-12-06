@@ -27,10 +27,14 @@ app.get("/privacy-policy", (req, res) => {
   // Send the privacy policy file
   res.sendFile(path.join(publicPath, "privacy-policy.txt"));
 });
+app.get("/terms-of-service", (req, res) => {
+  // Send the privacy policy file
+  res.sendFile(path.join(publicPath, "privacy-policy.txt"));
+});
 
 app.get("/about-us", (req, res) => {
   // Send the about us file
-  res.sendFile(path.join(publicPath, "terms-of-service.txt"));
+  res.sendFile(path.join(publicPath, "about-us.txt"));
 });
 
 //set security http headers

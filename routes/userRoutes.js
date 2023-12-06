@@ -7,6 +7,7 @@ const pushNotificationController = require("../controllers/push-notificationCont
 const router = express.Router();
 
 router.post("/signup", authController.signup);
+router.post("/socialLogin", authController.socialLogin);
 router.post("/verify", authController.verifyEmail);
 router.post("/login", authController.login);
 router.post("/sendOTP", authController.sendOTP);
@@ -21,25 +22,38 @@ router.post(
 
 // protecting all routes ussing protect midleware
 router.use(authController.protect);
-// router.patch("/updateMyPassword", authController.updatePassword);
+// router.get("/mynotifications", userController.mynotifications);
+router.patch("/updateMyPassword", authController.updatePassword);
 router.post("/logout", authController.logout);
 router.post("/classicPlay", timeController.setAndRetrieveAgreedUponTime);
 router.post(
   "/send-notification",
   pushNotificationController.sendPushNotification
 );
+// router.patch(
+//   "/updateMe",
+//   userController.uploadUserPhoto,
+//   userController.resizeUserPhoto,
+//   userController.updateMe
+// );
 
 // router.get("/speedPlay", timeController.startEggTimer);
 // router.get("/soloPlay", timeController.startEggTimer);
 
-// router.patch("/updatePassword", authController.updatePassword);
 router.get("/me", userControler.getMe, userControler.getUser);
-router.patch("/updateMe", userControler.updateMe);
-router.patch("/updateProfile", userControler.updateUserProfile);
-router.delete("/deleteMe", userControler.deleteMe);
+router.patch(
+  "/updateMe",
+  userControler.uploadUserPhoto,
+  userControler.resizeUserPhoto,
+  userControler.updateMe
+);
+// router.patch("/updateMe", userControler.updateMe);
+// router.patch("/updateProfile", userControler.updateUserProfile);
+// router.delete("/deleteMe", userControler.deleteMe); its not functional yet if required then modify
+router.route("/getAllUsers").get(userControler.getAllUsers);
 
 // router.use(authController.restrictTo("admin"));
-router.route("/").post(userControler.createUser);
+// router.route("/").post(userControler.createUser);
 
 router
   .route("/:id")

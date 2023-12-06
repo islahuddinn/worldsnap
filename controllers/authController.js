@@ -120,19 +120,60 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = currentUser;
   next();
 });
+
+exports.socialLogin = catchAsync(async (req, res) => {
+  let user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    try {
+      let obj = await stripe.customers.create({
+        name: req.body.name,
+        email: req.body.email,
+      });
+      id = obj.id;
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("C_id", id);
+    user = await User.create({
+      ...JSON.parse(JSON.stringify(req.body)),
+      email: req.body.email,
+      customerId: id,
+      verified: true,
+      password: "default123",
+    });
+  }
+
+  const logedIn = await RefreshToken.findOne({
+    device: req.body.device.id,
+    user: user._id,
+  });
+  if (logedIn) {
+    await RefreshToken.findByIdAndRemove(logedIn._id);
+  }
+
+  res.act = loginChecks(user);
+  return creatSendToken(
+    user,
+    200,
+    "Logged in Successfully",
+    res,
+    req.body.device
+  );
+});
 // =========SIGNUP USER=====================
+
 exports.signup = catchAsync(async (req, res, next) => {
-  // let id;
-  // try {
-  //   let obj = await stripe.customers.create({
-  //     name: req.body.name,
-  //     email: req.body.email,
-  //   });
-  //   id = obj.id;
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // console.log("C_id", id);
+  let id;
+  try {
+    let obj = await stripe.customers.create({
+      name: req.body.name,
+      email: req.body.email,
+    });
+    id = obj.id;
+  } catch (error) {
+    console.log(error);
+  }
+  console.log("C_id", id);
   const user = await User.findOne({ email: req.body.email });
   if (user) {
     return res.status(400).json({
@@ -612,37 +653,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   //   token,
   // });
 });
-
-// exports.resetPassword = catchAsync(async (req, res, next) => {
-//   // 1) Get user based on the user.
-//   // const hashedToken = crypto
-//   //   .createHash("sha256")
-//   //   .update(req.params.token)
-//   //   .digest("hex");
-
-//   const user = await User.findOne({
-//     // passwordResetToken: hashedToken,
-//     email: req.body.email,
-//     // passwordResetExpires: { $gt: Date.now() },
-//   });
-//   console.log(user);
-//   // 2) If token has not expired and there is user, set the new password
-//   if (!user) {
-//     return next(
-//       new AppError("Token is invalid or expired", 400, "token-error")
-//     );
-//   }
-
-//   user.password = req.body.password;
-//   user.passwordConfirm = req.body.passwordConfirm;
-//   user.passwordResetToken = undefined;
-//   user.passwordResetExpires = undefined;
-//   await user.save();
-//   // 3) Update changePasswordAt property for the user
-//   // 4) Log the user in, send the jwt
-//   createSendToken(user, 200, res);
-// });
-
 // ===================Verify OTP for RESET PASSWORD===============================
 exports.verifyOtpForResetPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({
@@ -710,26 +720,6 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     req.body.device
   );
 });
-
-// exports.updatePassword = catchAsync(async (req, res, next) => {
-//   // get the user from the collection
-//   const user = await User.findById(req.user._id).select("+password");
-//   // check if the curent password is correct
-//   console.log(req.user.id);
-//   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
-//     return next(
-//       new AppError("Your current password is incorrect.", 401, "wrong-password")
-//     );
-//   }
-//   // if so update the password
-//   user.password = req.body.password;
-//   user.passwordConfirm = req.body.passwordConfirm;
-//   await user.save();
-//   // remeber in this case user.findbyidandupdate method will not work
-
-//   // log user in and send jwt
-//   creatSendToken(user, 200, res);
-// });
 
 exports.logout = catchAsync(async (req, res, next) => {
   const device = req.body.device;

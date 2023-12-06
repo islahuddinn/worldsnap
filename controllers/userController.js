@@ -1,7 +1,47 @@
+const multer = require("multer");
+const sharp = require("sharp");
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const factory = require("./handleFactory");
+const cron = require("node-cron");
+const Notification = require("../models/notificationModel");
+const paginationQueryExtracter = require("../utils/paginationQueryExtractor");
+const paginateArray = require("../utils/paginationHelper");
+const RefreshToken = require("../models/refreshTokenModel");
+// const Guardian = require("../Models/guardianModel");
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(new AppError("Not an image! Please upload only images.", 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.uploadUserPhoto = upload.single("photo");
+
+exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+
+  await sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat("jpeg")
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/users/${req.file.filename}`);
+
+  next();
+});
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -17,69 +57,144 @@ exports.getMe = (req, res, next) => {
 };
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  // create error if user post password data
+  // 1) Create error if user POSTs password data
   if (req.body.password || req.body.passwordConfirm) {
     return next(
       new AppError(
-        "This rout is not for password update please use passwordupdate user",
+        "This route is not for password updates. Please use /updateMyPassword.",
         400
       )
     );
   }
-  // WE FILTERED OUT THE UNWANTED FIELDS
 
-  const filteredBody = filterObj(req.body, "name", "email");
-
-  const updateUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
+  // 2) Filtered out unwanted fields names that are not allowed to be updated
+  const filteredBody = filterObj(req.body, "email");
+  if (req.file) filteredBody.photo = req.file.filename;
+  // 3) Update user document..
+  const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, {
     new: true,
-    runValidators: true,
   });
+
   res.status(200).json({
-    status: "success",
+    status: 200,
+    success: true,
     data: {
-      user: updateUser,
+      user: updatedUser,
     },
   });
 });
 
-exports.updateUserProfile = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.user.id);
-  if (user) {
-    user.name = req.body.name || user.name;
-    user.photo = req.body.photo || user.photo;
-    user.country = req.body.country || user.country;
-    user.state = req.body.state || user.state;
-    user.city = req.body.city || user.city;
-
-    const updateUser = await user.save();
-
-    res.json({
-      _id: updateUser._id,
-      name: updateUser.name,
-      photo: updateUser.photo,
-      country: updateUser.country,
-      state: updateUser.state,
-      city: updateUser.city,
-    });
-  } else {
-    res.status(404).json({
-      success: false,
-      message: "User not found",
-    });
-  }
-});
-
 exports.deleteMe = catchAsync(async (req, res, next) => {
-  await User.findByIdAndUpdate(req.user.id, { active: false });
-
-  res.status(204).json({
-    status: "success",
+  // await User.findByIdAndUpdate(req.user.id, { active: false });
+  const user = await User.findOne({ _id: req.user._id });
+  if (user.subscriptionId) {
+    await stripe.subscriptions.del(user.subscriptionId);
+  }
+  await RefreshToken.deleteMany({ user: req.user._id });
+  await Guardian.deleteMany({
+    $or: [{ guardian: req.user._id }, { user: req.user._id }],
+  });
+  await User.findByIdAndDelete(req.user._id);
+  res.status(200).json({
+    status: 204,
+    success: true,
     data: null,
   });
 });
 
-exports.createUser = factory.createOne(User);
-exports.getUser = factory.getOne(User);
-// Do not use for updating password
+exports.getUser = catchAsync(async (req, res, next) => {
+  let user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(new AppError("No User Found With Given Id ", 404));
+  }
+
+  return res.status(200).json({
+    status: 200,
+    success: true,
+    user,
+  });
+});
+exports.getAllUsers = factory.getAll(User);
+
+// Do NOT update passwords with this!
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
+
+/////////// Notifications
+exports.mynotifications = catchAsync(async (req, res, next) => {
+  const notifictations = await Notification.find({
+    $and: [{ notifyType: { $ne: "sendMessage" } }, { receiver: req.user.id }],
+  }).sort("-createdAt");
+
+  const notifictationsmulti = await Notification.find({
+    $and: [
+      { notifyType: { $ne: "sendMessage" } },
+      { multireceiver: { $in: [req.user.id] } },
+    ],
+  }).sort("-createdAt");
+
+  await Notification.updateMany(
+    {
+      $and: [
+        { isSeen: { $not: { $elemMatch: { $eq: req.user.id } } } },
+        { multireceiver: { $elemMatch: { $eq: req.user.id } } },
+      ],
+    },
+    { $addToSet: { isSeen: req.user.id } }
+  );
+
+  //////////////////
+  let records;
+  records = JSON.parse(JSON.stringify(notifictationsmulti));
+  console.log("RECORDS: ", records.length);
+  for (let i = 0; i < records.length; i++) {
+    if (records[i].isSeen && records[i].isSeen.length > 0) {
+      if (records[i].isSeen.includes(JSON.parse(JSON.stringify(req.user.id)))) {
+        records[i].actionTaken = true;
+      } else {
+        records[i].actionTaken = false;
+      }
+    } else {
+      records[i].actionTaken = false;
+    }
+    console.log("A");
+  }
+
+  // records.push(JSON.parse(JSON.stringify(notifictations)));
+  const mergedNotifications = records.concat(notifictations);
+  // console.log(records);
+  mergedNotifications.sort((a, b) => b.createdAt - a.createdAt);
+  //////
+
+  const filteredDocs = notifictations.filter((doc) => !doc.actionTaken);
+
+  const ids = filteredDocs.map((doc) => doc._id);
+
+  const update = {
+    $set: {
+      actionTaken: true,
+    },
+  };
+
+  const filter = {
+    _id: {
+      $in: ids,
+    },
+  };
+
+  await Notification.updateMany(filter, update);
+
+  const data = paginateArray(
+    mergedNotifications,
+    req.query.page,
+    req.query.limit
+  );
+
+  res.status(200).json({
+    success: true,
+    status: 200,
+    size: mergedNotifications.length,
+    data,
+  });
+});
