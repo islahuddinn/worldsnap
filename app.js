@@ -22,7 +22,6 @@ const app = express();
 
 //1) GLOBAL MIDDLEWARES
 // serving static files
-// const publicPath = app.use(express.static(path.join(__dirname, "./public")));
 const publicPath = path.join(__dirname, "./public");
 app.use(express.static(publicPath));
 app.get("/privacy-policy", (req, res) => {
