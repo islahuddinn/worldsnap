@@ -10,16 +10,16 @@ exports.deleteOne = (Model) =>
     const { password } = req.body;
     const doc = await Model.findOne({ _id: req.params.id }).select("+password");
 
-    console.log("Provided Password:", password);
-    console.log(
-      "Stored Hashed Password:",
-      doc ? doc.password : "Document not found"
-    );
+    // console.log("Provided Password:", password);
+    // console.log(
+    //   "Stored Hashed Password:",
+    //   doc ? doc.password : " not found"
+    // );
 
     // Compare the provided password with the hashed password
 
     if (!doc) {
-      return next(new AppErr("No document found with that Id", 404));
+      return next(new AppErr("No User found with that Id", 404));
     }
 
     const passwordMatch = await bcrypt.compare(
@@ -36,8 +36,9 @@ exports.deleteOne = (Model) =>
     await Model.findByIdAndDelete(req.params.id);
 
     res.status(200).json({
-      status: "success",
-      message: "Document deleted successfully",
+      status: 200,
+      success: true,
+      message: "User deleted successfully",
       data: null,
     });
   });

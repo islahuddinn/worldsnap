@@ -1,247 +1,155 @@
- Privacy Policy Last Modified: 2023-06-01 
-=======================================
+PRIVACY POLICY 
+Last updated January 01, 2024 This privacy notice for Skullduggery, Inc. (doing business as SD Toyz) ("we," "us," or "our"), describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services"), such as when you: 
+Download and use our mobile application (WordSnap Timer App), or any other application of ours that links to this privacy notice. Engage with us in other related ways, including any sales, marketing, or events. 
 
-    The original version of this Privacy Policy is written in English. To the extent any translated version of this Privacy Policy conflicts with the English version, the English version controls.
+Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at sdtoyzinc@gmail.com. 
+SUMMARY OF KEY POINTS 
+This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for. 
+What personal information do we process? When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about personal information you disclose to us. 
+Do we process any sensitive personal information? We do not process sensitive personal information. 
+Do we receive any information from third parties? We do not receive any information from third parties. 
+How do we process your information? We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about how we process your information. 
+In what situations and with which parties do we share personal information? We may share information in specific situations and with specific third parties. Learn more about when and with whom we share your personal information. 
+How do we keep your information safe? We have organizational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about how we keep your information safe.
+What are your rights? Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.
+How do you exercise your rights? The easiest way to exercise your rights is by submitting a data subject access request, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.
+Want to learn more about what we do with any information we collect? Review the privacy notice in full.
+TABLE OF CONTENTS
+1. WHAT INFORMATION DO WE COLLECT?
+2. HOW DO WE PROCESS YOUR INFORMATION?
+3. WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONALINFORMATION?
+4. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
+5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
+6. HOW DO WE HANDLE YOUR SOCIAL LOGINS?
+7. HOW LONG DO WE KEEP YOUR INFORMATION?
+8. HOW DO WE KEEP YOUR INFORMATION SAFE?
+9. WHAT ARE YOUR PRIVACY RIGHTS?
+10. CONTROLS FOR DO-NOT-TRACK FEATURES
+11. DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
+12. DO WE MAKE UPDATES TO THIS NOTICE?
+13. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
+14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECTFROM YOU?
 
-    Tumblr, Inc. ("**Tumblr,**" "**we,**" "**us,**" or "**our**") takes the private nature of your information very seriously. This policy regarding our privacy practices (the "**Privacy Policy**") describes how we treat the information we collect or receive when you visit and use tumblr.com (the "**Site**") and/or Tumblr's other domains, products, advertising products, services, and/or content, including our iOS and Android mobile applications (collectively with the Site, the "**Services**"). Tumblr is a subsidiary of [Automattic](https://automattic.com/), a technology company that empowers people to build beautiful websites, tell their stories, and find and grow their audience. The way we handle your information hasn't changed, so this Privacy Policy still governs when you are on Tumblr, using a Tumblr app or interacting with our products, services or technologies. We may share non-personal information with our family companies for purposes such as product improvements, research and analysis, and to help them provide you with more relevant experiences. When you use the Services, you also consent to the collection, transfer, manipulation, storage, disclosure and other uses of your information as described in this Privacy Policy; please read it carefully.
-    
-    What This Privacy Policy Covers
+1. WHAT INFORMATION DO WE COLLECT?
+Personal information you disclose to us
+In Short: We collect personal information that you provide to us.
+We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.
+Personal Information Provided by You. The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following:
+Names email addresses.
+Sensitive Information. We do not process sensitive information.
+Social Media Login Data. We may provide you with the option to register with us using your existing social media account details, like your Facebook, Twitter, or other social media account. If you choose to register in this way, we will collect the information described in the section called "HOW DO WE HANDLE YOUR SOCIAL LOGINS?" below.  Application Data. If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:
+
+Push Notifications. We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device's settings.
+
+This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.
+All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.
+Information automatically collected
+In Short: Some information — such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit our Services.
+We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.
+Like many businesses, we also collect information through cookies and similar technologies.
+The information we collect includes:
+Log and Usage Data. Log and usage data is service-related, diagnostic ,usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports(sometimes called "crash dumps"), and hardware settings).
+
+Device Data. We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.
+
+Location Data. We collect location data such as information about your device's location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.
 
 
--------------------------------
-Privacy Policy Last Modified: 2023-06-01 
-    =======================================
-    
-        The original version of this Privacy Policy is written in English. To the extent any translated version of this Privacy Policy conflicts with the English version, the English version controls.
-    
-        Tumblr, Inc. ("**Tumblr,**" "**we,**" "**us,**" or "**our**") takes the private nature of your information very seriously. This policy regarding our privacy practices (the "**Privacy Policy**") describes how we treat the information we collect or receive when you visit and use tumblr.com (the "**Site**") and/or Tumblr's other domains, products, advertising products, services, and/or content, including our iOS and Android mobile applications (collectively with the Site, the "**Services**"). Tumblr is a subsidiary of [Automattic](https://automattic.com/), a technology company that empowers people to build beautiful websites, tell their stories, and find and grow their audience. The way we handle your information hasn't changed, so this Privacy Policy still governs when you are on Tumblr, using a Tumblr app or interacting with our products, services or technologies. We may share non-personal information with our family companies for purposes such as product improvements, research and analysis, and to help them provide you with more relevant experiences. When you use the Services, you also consent to the collection, transfer, manipulation, storage, disclosure and other uses of your information as described in this Privacy Policy; please read it carefully.
-        
-        What This Privacy Policy Covers
-    
-    -------------------------------
-    This Privacy Policy covers our treatment of information gathered when you are using or accessing the Services. This Privacy Policy also covers our treatment of any information about you that our partners share with us or that we share with our partners.
-    
-    This Privacy Policy does not apply to the practices of third parties that we do not own, control, or manage, including but not limited to any third party websites, services, applications, or businesses ("**Third Party Services**"). This includes third parties you provide with information about yourself as part of enabling or using a Tumblr feature, for example, information you provide to Stripe when interacting with the Post+ or Tipping Feature within Tumblr, or information you provide to [The Meet Group](https://www.themeetgroup.com/) as part of Tumblr Live. While we try to work only with those Third Party Services that share our respect for your privacy, we don't take responsibility for the content or privacy policies of those Third Party Services. We encourage you to carefully review the privacy policies of all Third Party Services you access.
-    
-    Also: This Privacy Policy doesn't govern what our users do on their Tumblr blogs and we aren't responsible for the information collection and use practices of our individual blogs and bloggers. One of the great features of Tumblr's products is customizability, and bloggers have a lot of flexibility in how their blogs behave. When you visit a blog in our network, that blog may collect more information than we do, and may provide information to third parties that we have no relationship with, including to advertisers.
-    
-    What We Collect and How We Use It
-    ---------------------------------
-    
-    **Account Information:** When you create an account on the Services (an "**Account**"), we'll ask you for information such as your username, password, age, and email address ("**Account Information**"). We may use Account Information, alone or together with other information, to enhance and improve the Services, such as by personalization. We use your age to verify that you can lawfully use the Services. We use your email address to verify your Account and to communicate with you, as described in more detail below.
-    
-    You can keep yourself fairly anonymous on Tumblr, but remember that your posts, blogs, pages, and username are all visible to the public by default. People that know your email address can also find your blogs. If you'd rather be unlisted, head over to your [Account Settings](https://www.tumblr.com/settings/account).
-    
-    **Email Communications with Us:** As part of the Services, you may occasionally receive email and other communications from us. Administrative communications relating to your Account (e.g., for purposes of Account recovery or password reset) are considered part of the Services and your Account, which you may not be able to opt-out from receiving. We also may send you other kinds of emails, which you can opt-out of either from your Account Settings page or by using the "Opt-Out" link in the emails themselves. **Note that we will *never* email you to ask for your password or other Account Information; if you receive such an email, please [forward it to us](https://www.tumblr.com/support).**
-    
-    We send two kinds of email: ones about fun stuff happening on Tumblr, and ones with important information about your account. You can opt out of the former, but not the latter.
-    
-    **Information about Your Accounts on Third Party Services:** You can link your Account to certain Third Party Services. In order to do so, you may provide us with your username or other user ID for a Third Party Service, and you may then be required to log into that Service. After you complete this login process, we will receive a token that allows us to access your account on that service so that we can, for example, post your content to that service when you ask us to. We do not receive or store your passwords for your Third Party Service accounts.
-    
-    **Information Obtained from Third Party Services:** In some cases, we partner with Third Party Services that may provide information about you. Such information could include, for example, your gender, if you have disclosed that information to that third party and made it available for Tumblr to access. To the extent we obtain such information, we may use it to develop new Services or to improve or enhance the Services.
-    
-    When you connect other services to your Tumblr account, those services might share information about you with us. What gets shown to us is determined by their privacy policies, which are long and boring, but which you should probably read if you have questions or concerns.
-    
-    **User Content:** By default, all sharing through the Services is public, and when you provide us with content it is published so that anyone can view it. Although we do provide tools, like password-protected blogs, Asks, and Fan Mail, that let you publish content privately, you should assume that anything you publish is publicly accessible unless you have explicitly selected otherwise. Also, please keep in mind that anything you share privately with another user, particularly through an Ask, Fan Mail, or submitted post, may be posted publicly by that user. Content published and shared publicly is accessible to everyone, including search engines, and you may lose any privacy rights you might have regarding that content. In addition, information shared publicly may be copied and shared throughout the Internet, including through actions or features native to the Services, such as reblogging.
-    
-    At its heart, Tumblr is a public platform. Don't be afraid to share amazing things, but do understand that it can be hard to completely remove things from the internet once they've been reblogged a few times.
-    
-    **Native Actions:** The Services allow you to perform native actions that are integral to our products, such as liking a post, reblogging a post, replying to a post, and following a blog. Liking, reblogging, and replying are public actions -- anyone can expand the "notes" view on a post, for example, to see who liked, reblogged, or replied to a post. We use information about native actions to improve the Services, develop new Services, and, particularly, to personalize your Tumblr experience. Personalization using this information may include presenting you with new posts relevant to what you've liked, providing you with better search results, and showing you advertising more relevant to your interests.
-    
-    Reblogs, Likes, and Replies are a matter of public record, so if you're truly ashamed of your desires it's best to keep them to yourself. But why? Be proud of who you are. You're beautiful. We're looking you in the eyes and telling you how beautiful you are.
-    
-    **Information About User Content:** In some cases, we may collect information about content you provide to the Services. For example, when it's included as part of your images, we may collect information describing your camera, camera settings, or [EXIF information](http://en.wikipedia.org/wiki/Exchangeable_image_file_format). This information allows us to improve the Services and provide additional features and functionality.
-    
-    **Contact and Financial Information**: There are various ways in which you may provide us financial information and contact information. For example, if you buy something from us (like Blaze, Premium Themes, or a domain name), tip or subscribe to a blog, or earn revenue through your site, you provide additional personal and payment information like your name, credit card information, and contact information. We also keep a record of the purchases you've made. You may also provide us with financial details to set up a payments integration (like [Post+](https://help.tumblr.com/hc/articles/4402757539607-Post-Overview-FAQ) or [Tipping](https://help.tumblr.com/hc/articles/4417356885527-Tipping)), like the email address for your Stripe account.
-    
-    We do not, however, store that financial information; such information is stored by our payment processor (the "**Payment Processor**"). Please note that if you use the Payment Processor's services, your data will be handled in accordance with the Payment Processor's privacy policy and practices. They have their own rules about information collection, use, storage, and sharing, which you should review before using the Payment Processor's services. We do receive certain information from our Payment Processor: (1) a unique token that we connect with your Account to enable you to make further purchases using the information stored by our Payment Processor and (2) in certain cases, the last four digits of the credit card number associated with that token, so that we can prevent fraudulent transactions and identity theft.
-    
-    **Information Related to Use of the Services:** We collect information about how people use the Services, including those with an Account. This type of information may be collected in our log files each time you interact with (i.e., make a request to) the Services. We use internal tools and third party applications and services (like Google Analytics or comScore) to collect and analyze this information. Some of this information may also be associated with the Internet Protocol Address ("**IP Address**") used to access the Services; some may be connected with your Account; and some may only be collected and used in aggregate form (as a statistical measure that wouldn't identify you or your Account). We also collect your IP Address when you make a post, particularly when you submit an anonymous "Ask." We may use this information about how you and others interact with the Services for a number of things generally related to enhancing, improving, protecting, and developing new Services, including but not limited to: providing users with personalized content; providing users with targeted advertising; improving our search results; identifying trending or popular content; fighting spam, malware, identity theft and generally keeping our users and community safe; and for legal and safety reasons as set forth in "Information Disclosed for Our Protection and the Protection of Others."
-    
-    We use information about how you interact with Tumblr in order to personalize it for you, to keep both you and our community safe from harm, and to improve Tumblr for everyone who uses it.
-    
-    **Information Related to Your Web Browser:** We automatically receive and record information from your web browser when you interact with the Services, such as your browser type and version, what sort of device you are using, your operating system and version, your language preference, the website or service that referred you to the Services, the date and time of each request you make to the Services, your screen display information, and information from any cookies we have placed on your web browser (as described below). We also sometimes detect whether you are using certain web browser extensions and store that information in a manner associated with your Account. We use web browser-related information to enhance and improve the Services.
-    
-    **Location Information:** In some cases we collect and store information about where you are located, such as by converting your IP Address into a rough geolocation. We may also ask you to provide information about your location, for example to use your geolocation information from your mobile device to geotag a post. We may use location information to improve and personalize the Services for you, for example by showing you relevant local content.
-    
-    Tumblr may determine your location by using drone technology and live video feeds. Ha ha, no, we just check out your [IP address](http://netforbeginners.about.com/od/navigatingthenet/f/IP-Addresses-Explained.htm) or any location data you attach to a post. Normal stuff.
-    
-    **Information Related to Your Mobile Device:** We may collect and store information related to your mobile device. In some cases, we may receive, generate, or assign your mobile device a unique identifier for the purposes described above in "Information Related to Use of the Services." We may also ask you to provide your phone number to enable new products and improve the Services, such as by enabling multi-factor authentication for Account login. We will always ask you whether it's OK for us to collect and store your phone number.
-    
-    **Information Collected Using Cookies and Other Technologies:** A cookie is a string of information that a website stores on a visitor's computer, and that the visitor's browser provides to the website each time the visitor returns. Pixel tags (also called web beacons) are small blocks of code placed on websites that allow Tumblr or a third party to see that you have looked at that page. We use cookies and web tags to enable our servers to recognize your web browser and tell us how and when you use the Services. Some services that we use (including Third Party Services), such as Google Analytics, Nielsen, and comScore, may use their own web tags or place their own cookies on your browser. If you are a Tumblr user in the EU, UK, or in some US states you can customize your cookie preferences from your [privacy settings](https://www.tumblr.com/settings/privacy).
-    
-    Cookies and web tags let us learn how people use Tumblr, which in turn helps us make a better product for you to use. Tumblr gives you some choices over which cookies we set and how we use your data.
-    
-    **Information About Your Contacts:** Certain features of the Services allow you to provide us with your contact lists, so that we can connect you with people in our Services that are also on those contact lists. For example, you can temporarily connect your email contact information to your Account, so that we can provide you with a list of your email contacts that use the Services. As another example, you can send us your mobile phone contact information through our mobile applications, which then allows us to provide you with a list of those contacts that use the Services so that you can "follow" their blogs. We will give you a choice as to whether or not you provide us such information, and we will disclose fully, within the appropriate feature, how we use that information.
-    
-    We won't look at (or be able to look at) your contact list unless you ask us to. Why would you ask us to? Because that's how you would find out if any of your contacts are on Tumblr. We discard this information immediately afterward.
-    
-    **Derived Information:** As described above in "Native Actions" and "Information Related to Use of the Services," we analyze your actions on the Services in order to derive or infer characteristics that may be descriptive of your Account (for example, what kinds of blogs you follow or what kinds of posts you view, like, or reblog). We use this information for all of the purposes set forth in "Information Related to Use of the Services," above.
-    
-    Personalized Advertising on Tumblr
-    ----------------------------------
-    
-    In order to provide you with all of this Tumblr content for free, Tumblr selectively runs advertisements. We, and our parent company, Automattic, work with online advertising companies to provide you with advertising that is as relevant and useful as possible. To make our ads more relevant and useful, we make educated guesses about your interests based on your activity on our sites and services. The ads we show you often reflect these interests and educated guesses.
-    
-    To learn more about how we select the ads you see, you can check out [Tumblr's Advertising](https://tumblr.zendesk.com/hc/articles/360035272334-Tumblr-ads-you) and affiliate policies.
-    
-    **Managing your choices for personalized advertising experiences**: In some geographic locations, Tumblr users have the legal right to opt-out of having ads personalized to them. Note that if you opt-out you will continue to see advertisements on Tumblr, though they will be less relevant and useful to you.
-    
-    If you are a Tumblr user in the EU, UK, or in some US states you can customize your advertising preferences from within your [privacy settings](https://www.tumblr.com/settings/privacy).
-    
-    When using the mobile app version of Tumblr on Apple iOS devices you can also opt out of personalized advertising by selecting "Limit Ad Tracking" in the iOS settings. For more information about these iOS options:
-    
-    1.  Open Settings;
-    2.  Select Privacy; and
-    3.  Select Advertising and follow the on-screen instructions.
-    
-    When using the mobile app version of Tumblr on Android devices you can opt-out of personalized advertising by selecting "Opt out of Interest Based Ads" in Google settings. For more information about these Android options:
-    
-    1.  Open Settings;
-    2.  Select Google;
-    3.  Select Privacy; and
-    4.  Select Ads and follow the on-screen instructions.
-    
-    More information about options for hiding, reporting, and controlling the ads you see on Tumblr can be found in our [Tumblr Ads & You](https://help.tumblr.com/hc/articles/360035272334-Tumblr-Ads-You) support doc.
-    
-    With Whom Your Information Is Shared
-    ------------------------------------
-    
-    We never share information we receive from you unless: (a) we have your permission to share that information; (b) we have given you prior notice that the information will be shared, and with whom (such as in this Privacy Policy); or (c) that information is aggregate information or other information that does not identify you.
-    
-    **Information Shared with and Received from our Corporate Parents:** We are a wholly-owned subsidiary of Automattic, and a member of the Automattic family of companies. Because we are a wholly-owned subsidiary, Automattic and the rest of our family of companies may receive any information we do, and may share information they have with us. Our family of companies may use the information they receive from us to help us provide, understand, and improve the Services (including by providing us analytics) and in connection with their products and services (including by providing you with a more personalized experience). For details about how Automattic treats the information it collects, please review this [Privacy Policy](https://automattic.com/privacy/).
-    
-    Automattic owns us and we share with it and the Automattic family of companies.
-    
-    **Information Shared with the Public Through the Services:** As noted in "User Content" and "Native Actions," above, by default, content published through the Services and many actions you take on the Services are shared with the public. Because this kind of information can be seen by anyone and may be indexed by search engines, you should be careful about what you choose to disclose publicly and make sure it's information you want to share with everyone.
-    
-    The content you create on Tumblr is, by default, public. This means that anyone can see it, and that search engines can index it. If these things bother you, take a look at some of the additional [privacy features](https://tumblr.zendesk.com/hc/articles/115011611747-Privacy-options) we offer.
-    
-    **Information Shared Between the Services:** We may, if possible, aggregate information about your use of multiple Services and use that consolidated information to enhance and improve the Services, and to develop new Services.
-    
-    **Information You Share with Third Party Services:** You may access Third Party Services through the Services, for example by clicking on externally-pointing links. You may also choose to share information that you provide to us, like blog posts, with those Third Party Services (for example, by sharing posts to Twitter or Facebook). This Privacy Policy only governs information we collect and you are responsible for reading and understanding those Third Party Services' privacy policies.
-    
-    You can automatically publish the posts you make on Tumblr to other sites (like Facebook or Twitter). That's where our Privacy Policy ends and their policies begin. Make sure you're cool with the policies of any services you're considering sharing to before connecting them to your Tumblr account.
-    
-    **Information Shared with Our Agents in Order to Operate and Improve the Services:** In some cases, we share information we store (such as IP addresses) with third parties, such as service providers, consultants, and other agents ("**Agents**"), for the purposes of operating, enhancing, and improving the Services, and developing new products and services. For example, we may share information with service providers that help us fight spam, payment providers that process your credit and debit card information, customer chat and email support services that help us communicate with you (hey there!), registrars and registries that allow us to provide domain registration services, analytics providers that help us understand and improve our services, and third party partners that pitch in on our marketing efforts (like identifying a specific marketing target group or improving our marketing campaigns, and by placing ads to market our services), along with third-party consultants who may have access to information in the process of improving our processes and technology. Agents with whom we share such information for these reasons are generally bound by confidentiality obligations and, unless we tell you differently, our agents do not have any right to use information we share with them beyond the scope and duration of what is necessary to assist us.
-    
-    **Information Disclosed Pursuant to Business Transfers:** In some cases, we may choose to buy or sell business assets. In these transactions, user information is typically one of the transferred business assets. Moreover, if we, or substantially all of our assets, were acquired, or if we go out of business or enter bankruptcy, user information would be one of the assets that is transferred or acquired by a third party. You acknowledge that such transfers may occur, and that any acquirer of us or our assets may continue to use your Personal Information as set forth in this policy.
-    
-    Should we happen to get acquired (again!) or go out of business (no way), the transfer of assets from us to our buyer may very well include user information. They are allowed to use it only in the ways outlined here, in the Privacy Policy you are reading right now.
-    
-    **Information Disclosed to Comply With Legal and Regulatory Requirements:** We believe in freedom of expression, and, to the extent reasonable, we try to protect our community from baseless legal demands. That said, we may disclose information about you in response to a subpoena, court order, or other governmental request. For more information on how we respond to requests for information about Tumblr users, please see our [Law Enforcement Guidelines](https://help.tumblr.com/hc/articles/231925668-Law-Enforcement-Guidelines). Additionally, if you have a domain registered with us, we may share your information to comply with the Internet Corporation for Assigned Names and Numbers' (ICANN) regulations, rules, or policies. For example, your information relating to your domain registration may be available in the WHOIS database, or we may be required to share your information with ICANN-approved Dispute Resolution Service Providers. Please see our [Domain Registrations and Privacy](https://help.tumblr.com/hc/articles/14449316040087#privacy) support document for more details.
-    
-    **Information Disclosed for Our Protection and the Protection of Others:** We reserve the right to access, preserve, and disclose any information as we reasonably believe is necessary, in our sole discretion, to (i) satisfy any law, regulation, or governmental request, (ii) enforce this Privacy Policy and our [Terms of Service](https://www.tumblr.com/policy/en/terms-of-service), including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security, trust and safety, or technical issues (including exchanging information with other companies and organizations for the purposes of improving security and preventing fraud, spam, and malware), (iv) respond to user support requests, or (v) protect the rights, property, health or safety of us, our users, any third parties or the public in general, including but not limited to situations involving possible violence, suicide, or self-harm.
-    
-    Don't make us narc on you. We don't want to. But we do need to protect everyone who uses Tumblr from harming us, each other, or themselves. We work hard to balance privacy and community, and we're sure you can appreciate the challenges in that, and the seriousness with which we take those challenges.
-    
-    **Information We Share with Your Consent or at Your Request:** If you ask us to release information that we have about your Account, we will do so if reasonable and not unduly burdensome.
-    
-    **Information Shared with Other Third Parties:** We may share or disclose non-private information, Aggregate Information, or other non-personally identifying information with people and entities that we do business with.
-    
-    Security and Retention of Your Information
-    ------------------------------------------
-    
-    Your Account Information is protected by a password for your privacy and security. We may enable additional security features in the future, like multi-factor authentication. You need to prevent unauthorized access to your Account and information by creating a unique, secure, and protected password and limiting access to your computer and browser by signing off after you have finished accessing your Account on the Services.
-    
-    We seek to protect your information (including your Account Information) to ensure that it is kept private; however, we can't guarantee the security of any information. Unauthorized entry or use, hardware or software failure, and other factors may compromise the security of user information at any time.
-    
-    It's really important that you have a unique password for all of your accounts on the internet, including your Tumblr account. If you have trouble remembering passwords then you might consider using a service like [1Password](https://agilebits.com/onepassword) or [LastPass](https://lastpass.com/).
-    
-    Tumblr will retain your information only for as long as is necessary for the purposes set out in this Privacy Policy, for as long as your Tumblr account is active or as needed to provide you with the Services. If you no longer want Tumblr to use your information to provide you with the Services, you may close your account and Tumblr will delete the information it holds about you unless we need to retain and use your information to comply with our legal obligations, to resolve disputes, to enforce our agreements or as otherwise permitted by law.
-    
-    What Information You Can Access
-    -------------------------------
-    
-    If you are a registered user, you can access most information associated with your Account by logging into the Services and checking your Account Settings page. Registered and unregistered users can access and delete cookies through their web browser settings.
-    
-    How to Delete Your Account and What Happens When You Delete Your Account
-    ------------------------------------------------------------------------
-    
-    If you want to delete your Account, you can do so from your [Account Settings](https://www.tumblr.com/settings/account). Deleting your Account may not fully remove the content you have published from our systems, as caching of, backups of, copies of, or references to your Account Information may not be immediately removed. In addition, given the nature of sharing on the Services, some of the public activity on your Account prior to deletion (such as reblogs of your blog posts) may remain stored on our servers and accessible to the public.
-    
-    You'll do great things on Tumblr, surely, but if it ever comes time to say goodbye, then you're free to delete your account at any time and for any reason. The deletion will be effective immediately, for the most part, but it might take a little while to scrub everything from our archives and backups.
-    
-    What won't get scrubbed are Reblogs of your posts. Those will remain on whatever blog reblogged them. Like we said before, it can be really, really hard to delete something once it goes out onto the internet, so be sure you're only publishing stuff that you're certain you want to publish.
-    
-    Privacy Rights
-    --------------
-    
-    If you're a resident of certain US states including California, Colorado, Connecticut, Utah, and Virginia, you have a number of rights and choices about your personal information. To learn more, see the [Supplemental Privacy Notice](https://www.tumblr.com/privacy/en#supplemental) below.
-    
-    Changes to This Privacy Policy
-    ------------------------------
-    
-    We may amend this Privacy Policy from time to time, using the process for modifications set forth in our [Terms of Service](https://www.tumblr.com/policy/terms-of-service/automattic). Use of information we collect is subject to the Privacy Policy in effect at the time such information is collected.
-    
-    Where to Direct Questions or Concerns
-    -------------------------------------
-    
-    If you have any questions or concerns regarding privacy using the Services, [send us a detailed message](https://www.tumblr.com/support).
-    
-    Link to Prior Versions
-    ----------------------
-    
-    You will find a link to prior versions of our Privacy Policy below. We have stored these versions on GitHub, which will also allow you to compare different versions and see what terms have changed:
-    
-    <https://github.com/tumblr/policy/commits/master/privacy-policy.txt>
-    
-    Supplemental Privacy Notice
-    ---------------------------
-    
-    Laws in some US states, including California, Colorado, Connecticut, Utah, and Virginia, require us to provide residents with additional information about the categories of personal information we collect and share, where we get that personal information, and how and why we use it. This Notice covers that required additional information as a supplement to the information in our privacy policy above.
-    
-    ### Summary of Information We Collect
-    
-    In the last 12 months, we collected the following categories of personal information (as those terms are defined by applicable law)
-    
-    -   Identifiers (such as username and email address);
-    -   Commercial information (such as transaction data);
-    -   Financial data (such as credit card and other financial account information);
-    -   Internet or other network or device activity (such as unique identifiers, browsing history or other usage data);
-    -   Geolocation information (general location);
-    -   Inference data about you;
-    -   Legally protected classifications (such as gender);
-    -   Physical characteristics or description (such as when you voluntarily submit a photo);
-    -   Or other information that identifies or can be reasonably associated with you.
-    
-    You can find more information about what we collect, the business and commercial purposes we use it for, and the sources of that information in the ["What We Collect and How We Use It"](https://www.tumblr.com/privacy/en#what-we-collect) section above.
-    
-    We share this information with the categories of third parties described above in ["With Whom Your Information Is Shared."](https://www.tumblr.com/privacy/en#with-whom-your-information-is-shared)We retain this information for the length of time described in our [Security and Retention of Your Information](https://www.tumblr.com/privacy/en#security-and-retention-of-your-information) section.
-    
-    We may also use the categories of personal information for compliance with applicable laws and regulations. We may aggregate the information we collect or de-identify it in order to limit or prevent the identification of any particular user or device.
-    
-    In some US states, you have additional rights subject to any exemptions provided by your state's respective law. You can find detailed metrics about Tumblr's compliance with these rights in our Privacy Report [here](https://transparency.automattic.com/tumblr/).
-    
-    -   **Access:** Some US states give you the right to request a copy of certain information we hold about you, as well as a summary of: the categories of personal information we have collected or disclosed about you in the last twelve months, the categories of sources of such information, the business or commercial purpose for collecting or sharing that information, and the categories of third parties with whom we shared that information. As described in the section 'What Information You Can Access,' you can access much of your information by logging in to your Tumblr account. You can also request a personal data report by submitting a request in the Privacy section of your Settings. You need to be signed in to your Tumblr account to submit this request, and you will have to log in to your account to access the summary or the report. If you want to request the summary described above, require additional assistance, or if you do not have a Tumblr account, submit a support ticket [here](https://www.tumblr.com/support) or email us at ccpa@tumblr.com.
-    -   **Delete:** In some US states you also have the right to delete certain information we have about you. You can delete much of your information by logging in to your account. If you cannot do this, or you do not have a Tumblr account, please submit a support ticket [here](https://www.tumblr.com/support), or email us at ccpa@tumblr.com. For more information on deleting your account or leaving Tumblr, please refer to the section 'How to Delete Your Account.'
-    -   **Non-Discrimination:** You also have the right not to be discriminated against (as provided for in applicable law) for exercising your rights.
-    -   **Correct:** In general you can correct any information Tumblr has about you by editing your account. For example, you can update your email address from [your account settings](https://www.tumblr.com/settings/account). If there's any information we have about you that you would like corrected, that you can't change yourself, you can [contact our support team](https://www.tumblr.com/support) to request this.
-    -   **Opt-Out:** You may have the right to opt-out of having your data sold or shared (as those terms are defined in your state's law). More on how to do that below.
-    -   **Portability:** At Tumblr it's totally possible to [export your blog](https://help.tumblr.com/hc/articles/360005118894-Export-Your-Blog). It's your stuff, not ours. We make it easy for you to grab a copy of it
-    
-    Certain information may be exempt from these rights under applicable law. For example, we need certain types of information so that we can provide you with the Services. If you ask us to delete them, you may no longer be able to access or use the Services.
-    
-    Before we can satisfy your request, you'll need to give us enough information so that we can be certain of your identity. To do that, you'll need to log in to your account or give us certain information about you and/or your use of the Services. You can also designate an authorized agent to make a request on your behalf. To do so, you have to give us written authorization for the agent to act on your behalf. You'll still need to verify your identity directly with us.
-    
-    **Right to Opt-Out:** Tumblr selectively runs advertisements so we can provide you with Tumblr content for free. To help select which ads to show you, we may share some of your information with advertising partners, or allow our advertising partners to "collect" certain information. The personal information we share includes online identifiers and internet or other network or device activity (such as cookie information, other device identifiers, and IP address), and geolocation data (approximate location information from your IP address). In some US states, this data sharing may be considered a "sale." To learn more about how we select the ads you see, check out [Tumblr's Ads & You](https://tumblr.zendesk.com/hc/articles/360035272334-Tumblr-ads-you). We do not sell (or share) information that identifies you personally, like your name or contact information, in our ads program. Also, we do not knowingly "sell" your personal information if you are under 16.
-    
-    Learn how you can opt out by going to [Your Advertising Choices](https://tumblr.zendesk.com/hc/articles/360041012973). If you are a user who has told us you are under 16, you'll see in [your settings](https://www.tumblr.com/settings/privacy) that we've already opted you out.
-    
-    In addition to the data sharing related to our ads program, sometimes Tumblr shares your information with our third-party service providers to provide our services to you. To the extent that we share your information with certain advertising, marketing, or analytics vendors, this can be considered a "sale" or "share" in certain U.S. States, which you may have the right to opt out of. This opt-out is controlled through the same opt-out as the personalized ads program opt-out, found in [your settings](https://www.tumblr.com/settings/privacy). We also respect the GPC browser signal and will treat it as a valid means of communicating your desire to opt out.
-    
-    We do not collect or process your sensitive (and potentially sensitive) personal information except where it is strictly necessary to provide you with our service, where the processing is not for the purpose of inferring characteristics about you, or for other purposes that do not require an option to limit under California law.
-    
-    Appeals Process for Denied Requests
-    -----------------------------------
-    
-    In some circumstances we may deny your request to exercise one of these rights. For example, if we cannot verify that you are the account owner we may deny your request to access the personal information associated with your account. As another example, if we are legally required to maintain a copy of your personal information we may deny your request to delete your personal information.
-    
-    In the event that we deny your request, we will communicate this fact to you in writing. You may appeal our decision by responding in writing to our denial email and stating that you would like to appeal.
-    
-    If your appeal is denied, in some US states (Colorado, Connecticut, and Virginia) you may refer the denied appeal to the state attorney general if you believe the denial is in conflict with your legal rights. The process for how to do this will be communicated to you in writing at the same time we send you our decision about your appeal.
-    
-    Contacting Us About These Rights
-    --------------------------------
-    
-    You can usually access, correct, or delete your personal data using your account settings and tools that we offer, but if you aren't able to or you'd like to contact us about one of the other rights, scroll up to ["Where to Direct Questions or Concerns"](https://www.tumblr.com/privacy/en#where-to-direct-questions-or-concerns) to, well, find out where to direct your questions or concerns.
+2. HOW DO WE PROCESS YOUR INFORMATION?
+In Short: We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.
+
+To facilitate account creation and authentication and otherwise manage user accounts. We may process your information so you can create and login to your account, as well as keep your account in working order.
+
+To deliver and facilitate delivery of services to the user. We may process your information to provide you with the requested service.
+
+To request feedback. We may process your information when necessary to request feedback and to contact you about your use of our Services.
+
+To send you marketing and promotional communications. We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see "WHAT ARE YOURPRIVACY RIGHTS?" below.
+
+To deliver targeted advertising to you. We may process your information to develop and display personalized content and advertising tailored to your interests, location, and more.
+
+To post testimonials. We post testimonials on our Services that may contain personal information.
+
+To evaluate and improve our Services, products, marketing, and your experience. We may process your information when we believe it is necessary to identify usage trends, determine the effectiveness of our promotional campaigns, and to evaluate and improve our Services, products, marketing, and your experience.
+
+To identify usage trends. We may process information about how you use our Services to better understand how they are being used so we can improve them.
+
+To comply with our legal obligations. We may process your information to comply with our legal obligations, respond to legal requests, and exercise, establish, or defend our legal rights.
+
+3. WHAT LEGAL BASES DO WE RELY ON TO PROCESSYOUR INFORMATION?
+In Short: We only process your personal information when we believe it is necessary and we have a valid legal reason (i.e., legal basis) to do so under applicable law, like with your consent, to comply with laws, to provide you with services to enter into or fulfill our contractual obligations, to protect your rights, or to fulfill our legitimate business interests.
+If you are located in Canada, this section applies to you.
+We may process your information if you have given us specific permission (i.e., express consent) to use your personal information for a specific purpose, or in situations where your permission can be inferred (i.e., implied consent). You can withdraw your consent at any time.
+In some exceptional cases, we may be legally permitted under applicable law to  process your information without your consent, including, for example:
+If collection is clearly in the interests of an individual and consent cannot be obtained in a timely way
+
+For investigations and fraud detection and prevention
+
+For business transactions provided certain conditions are met
+
+If it is contained in a witness statement and the collection is necessary to assess, process, or settle an insurance claim
+
+For identifying injured, ill, or deceased persons and communicating with next of kin
+
+If we have reasonable grounds to believe an individual has been, is, or may be victim of financial abuse
+
+If it is reasonable to expect collection and use with consent would compromise the availability or the accuracy of the information and the collection is reasonable for purposes related to investigating a breach of an agreement or a contravention of the laws of Canada or a province
+
+If disclosure is required to comply with a subpoena, warrant, court order, or rules of the court relating to the production of records
+
+If it was produced by an individual in the course of their employment, business, or profession and the collection is consistent with the purposes for which the information was produced
+
+If the collection is solely for journalistic, artistic, or literary purposes
+
+If the information is publicly available and is specified by the regulations
+
+
+4. WHEN AND WITH WHOM DO WE SHARE YOURPERSONAL INFORMATION?
+In Short: We may share information in specific situations described in this section and/or with the following third parties.
+We may need to share your personal information in the following situations:
+Business Transfers. We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.
+
+When we use Google Maps Platform APIs. We may share your information with certain Google Maps Platform APIs (e.g., Google Maps API, Places API).
+
+
+5. DO WE USE COOKIES AND OTHER TRACKINGTECHNOLOGIES?
+In Short: We may use cookies and other tracking technologies to collect and store your information.
+We may use cookies and similar tracking technologies (like web beacons and pixels)to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice.
+
+6. HOW DO WE HANDLE YOUR SOCIAL LOGINS?
+In Short: If you choose to register or log in to our Services using a social media account, we may have access to certain information about you.
+Our Services offer you the ability to register and log in using your third-party social media account details (like your Facebook or Twitter logins). Where you choose to do this, we will receive certain profile information about you from your social media provider. The profile information we receive may vary depending on the social media provider concerned, but will often include your name, email address, friends list, and profile picture, as well as other information you choose to make public on such asocial media platform.
+We will use the information we receive only for the purposes that are described in this privacy notice or that are otherwise made clear to you on the relevant Services. Please note that we do not control, and are not responsible for, other uses of your personal information by your third-party social media provider. We recommend that you review their privacy notice to understand how they collect, use, and share your personal information, and how you can set your privacy preferences on their sites and apps.
+
+7. HOW LONG DO WE KEEP YOUR INFORMATION?
+In Short: We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law.
+We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements). No purpose in this notice will require us keeping your personal information for longer than the period of time in which users have an account with us.
+When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.
+
+8. HOW DO WE KEEP YOUR INFORMATION SAFE?
+In Short: We aim to protect your personal information through a system of organizational and technical security measures.
+We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.
+
+9. WHAT ARE YOUR PRIVACY RIGHTS?
+In Short: In some regions, such as Canada, you have rights that allow you greater access to and control over your personal information. You may review, change, or terminate your account at any time.
+In some regions (like Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; (iv) if applicable, to data portability; and (v)not to be subject to automated decision-making. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?" below.
+We will consider and act upon any request in accordance with applicable data protection laws.
+Withdrawing your consent: If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?" below.
+However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.
+Opting out of marketing and promotional communications: You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, or by contacting us using the details provided in the section "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?" below. You will then be removed from the marketing lists. However, we may still communicate with you — for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.
+Account Information
+If you would at any time like to review or change the information in your account or terminate your account, you can:
+Log in to your account settings and update your user account.
+
+Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.
+If you have questions or comments about your privacy rights, you may email us at sdtoyzinc@gmail.com.
+
+10. CONTROLS FOR DO-NOT-TRACK FEATURES
+Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.
+
+11. DO UNITED STATES RESIDENTS HAVE SPECIFICPRIVACY RIGHTS?
+In Short: If you are a resident of California, Colorado, Connecticut, Utah or Virginia, you are granted specific rights regarding access to your personal information.
+What categories of personal information do we collect?
+We have collected the following categories of personal information in the past twelve(12) months:Category	Examples	Collected
+A. Identifiers	Contact details, such as real name, alias,postal address, telephone or mobilecontact number, unique personal identifier,online identifier, Internet Protocol address,email address, and account name	NO
+
