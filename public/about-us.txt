@@ -1,4 +1,4 @@
-The WordSnap Timer App is designed for timing play when playing WordSnap:
+<p>The WordSnap Timer App is designed for timing play when playing WordSnap:
 The Puzzling Word Game.  It includes multiple timer modes: a countdown clock, an egg-type timer, and a stopwatch mode. 
-Game players can download the app for free in order to play Classic, Speed, and Solo versions of WordSnap.  
+Game players can download the app for free in order to play Classic, Speed, and Solo versions of WordSnap.  </p>
 
