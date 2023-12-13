@@ -33,7 +33,7 @@ app.get("/privacy-policy", (req, res) => {
 });
 app.get("/terms-of-service", (req, res) => {
   // Send the privacy policy file
-  res.sendFile(path.join(publicPath, "privacy-policy.txt"));
+  res.sendFile(path.join(publicPath, "terms-of-use.txt"));
 });
 
 app.get("/about-us", (req, res) => {
