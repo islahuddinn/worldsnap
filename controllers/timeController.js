@@ -42,12 +42,9 @@ exports.setAndRetrieveAgreedUponTime = catchAsync(async (req, res, next) => {
   // Continue with the rest of your code or send the retrieved time as a response
   res
     .status(200)
-    .json({ status: "success", data: { agreedUponTime: retrievedTime } });
+    .json({
+      status: 200,
+      success: true,
+      data: { agreedUponTime: retrievedTime },
+    });
 });
-
-// Example route for setting and retrieving agreed-upon time
-// app.post(
-//   "/set-and-retrieve-agreed-upon-time",
-//   authMiddleware,
-//   setAndRetrieveAgreedUponTime
-// );
