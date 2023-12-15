@@ -25,7 +25,6 @@ router.use(authController.protect);
 // router.get("/mynotifications", userController.mynotifications);
 router.patch("/updateMyPassword", authController.updatePassword);
 router.post("/logout", authController.logout);
-router.post("/classicPlay", timeController.setAndRetrieveAgreedUponTime);
 router.post(
   "/send-notification",
   pushNotificationController.sendPushNotification

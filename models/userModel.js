@@ -47,15 +47,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       sparse: true,
     },
+    mode: {
+      type: String,
+    },
     minutes: {
       type: Number,
       default: 0,
     },
     seconds: {
-      type: Number,
-      default: 0,
-    },
-    milliseconds: {
       type: Number,
       default: 0,
     },
