@@ -11,22 +11,23 @@
   <p>This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for.</p>
 
   <h2>TABLE OF CONTENTS</h2>
-  <ol>
-    <li><a href="#section-1">WHAT INFORMATION DO WE COLLECT?</a></li>
-    <li><a href="#section-2">HOW DO WE PROCESS YOUR INFORMATION?</a></li>
-    <li><a href="#section-3">WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL INFORMATION?</a></li>
-    <li><a href="#section-4">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></li>
-    <li><a href="#section-5">DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></li>
-    <li><a href="#section-6">HOW DO WE HANDLE YOUR SOCIAL LOGINS?</a></li>
-    <li><a href="#section-7">HOW LONG DO WE KEEP YOUR INFORMATION?</a></li>
-    <li><a href="#section-8">HOW DO WE KEEP YOUR INFORMATION SAFE?</a></li>
-    <li><a href="#section-9">WHAT ARE YOUR PRIVACY RIGHTS?</a></li>
-    <li><a href="#section-10">CONTROLS FOR DO-NOT-TRACK FEATURES</a></li>
-    <li><a href="#section-11">DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></li>
-    <li><a href="#section-12">DO WE MAKE UPDATES TO THIS NOTICE?</a></li>
-    <li><a href="#section-13">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></li>
-    <li><a href="#section-14">HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></li>
-  </ol>
+ <ol>
+  <li><a href="#section-1" style="color: white;">WHAT INFORMATION DO WE COLLECT?</a></li>
+  <li><a href="#section-2" style="color: white;">HOW DO WE PROCESS YOUR INFORMATION?</a></li>
+  <li><a href="#section-3" style="color: white;">WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL INFORMATION?</a></li>
+  <li><a href="#section-4" style="color: white;">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></li>
+  <li><a href="#section-5" style="color: white;">DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></li>
+  <li><a href="#section-6" style="color: white;">HOW DO WE HANDLE YOUR SOCIAL LOGINS?</a></li>
+  <li><a href="#section-7" style="color: white;">HOW LONG DO WE KEEP YOUR INFORMATION?</a></li>
+  <li><a href="#section-8" style="color: white;">HOW DO WE KEEP YOUR INFORMATION SAFE?</a></li>
+  <li><a href="#section-9" style="color: white;">WHAT ARE YOUR PRIVACY RIGHTS?</a></li>
+  <li><a href="#section-10" style="color: white;">CONTROLS FOR DO-NOT-TRACK FEATURES</a></li>
+  <li><a href="#section-11" style="color: white;">DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></li>
+  <li><a href="#section-12" style="color: white;">DO WE MAKE UPDATES TO THIS NOTICE?</a></li>
+  <li><a href="#section-13" style="color: white;">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></li>
+  <li><a href="#section-14" style="color: white;">HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></li>
+</ol>
+
 
   <!-- Section 1 content goes here with an id for linking -->
   <h2 id="section-1">1. WHAT INFORMATION DO WE COLLECT?</h2>
@@ -161,7 +162,7 @@ If you have questions or comments about your privacy rights, you may email us at
 
   <h2 id="section-14">14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
   <p>If you would at any time like to review or change the information in your account or terminate your account, you can:</p>
-  <ul>
+  <ul style="color: white;">
     <li>Log in to your account settings and update your user account.</li>
     <li>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</li>
   </ul>

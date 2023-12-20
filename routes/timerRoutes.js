@@ -10,8 +10,8 @@ router
   // .get("/classicPlay", timeController.classicPlay)
   .post("/classicPlay", timeController.classicPlay)
   // .get("/speedPlay", timeController.speedPlay)
-  .post("/speedPlay", timeController.speedPlay);
-//   .get("/soloPlay", timeController.soloPlay)
-// .post("/soloPlay", timeController.soloPlay);
+  .post("/speedPlay", timeController.speedPlay)
+  //   .get("/soloPlay", timeController.soloPlay)
+  .post("/soloPlay", timeController.soloPlay);
 
 module.exports = router;

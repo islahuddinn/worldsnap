@@ -1,7 +1,8 @@
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const User = require("../models/userModel");
-const { SendNotification } = require("../utils/notification");
+// const { SendNotification } = require("../utils/notification");
+const momenttz = require("moment-timezone");
 
 //Function to set and retrieve agreed-upon time for a user
 exports.setAndRetrieveAgreedUponTime = catchAsync(async (req, res, next) => {
@@ -50,41 +51,96 @@ exports.setAndRetrieveAgreedUponTime = catchAsync(async (req, res, next) => {
   });
 });
 
-// Egg timer logic for classic play mode
+// Function to simulate an egg timer with immediate stop functionality
+
 const eggTimer = (minutes, seconds) => {
-  return new Promise((resolve) => {
-    const totalseconds = minutes * 60 * 1000 + seconds;
-    setTimeout(() => {
-      resolve();
-    }, totalseconds);
-  });
+  let remainingTime = minutes * 60 * 1000 + seconds * 1000;
+  let intervalId;
+  let timerActive = true;
+
+  const stopTimer = () => {
+    clearInterval(intervalId);
+    timerActive = false;
+    console.log("Egg timer stopped!");
+  };
+
+  const startTimer = () => {
+    const startTime = momenttz(); // Record the start time
+
+    intervalId = setInterval(() => {
+      const elapsedMilliseconds = momenttz().diff(startTime);
+      remainingTime =
+        minutes * 60 * 1000 + seconds * 1000 - elapsedMilliseconds;
+
+      if (remainingTime > 0 && timerActive) {
+        // Display remaining time in UTC format
+        console.log(
+          `Egg timer: ${momenttz()
+            .startOf("day")
+            .milliseconds(remainingTime)
+            .format("HH:mm:ss")} remaining (UTC)`
+        );
+      } else {
+        clearInterval(intervalId);
+        timerActive = false; // Set timerActive to false when complete
+        console.log("Egg timer complete!");
+      }
+    }, 1000);
+  };
+
+  return { startTimer, stopTimer, timerActive, intervalId };
 };
 
-// Classic play route
 exports.classicPlay = catchAsync(async (req, res, next) => {
-  const { minutes, seconds } = req.body;
+  const { minutes, seconds, type } = req.body;
 
-  // Call the function to set and retrieve time for classic play mode
   req.body.mode = "classic";
 
-  try {
-    console.log(
-      `Classic play: Egg timer set for ${minutes} minutes and ${seconds}seconds`
-    );
-    await eggTimer(minutes, seconds);
-    console.log("Egg timer complete!");
-    // Continue with the rest of your code or send a response
-    res
-      .status(200)
-      .json({ status: 200, success: true, message: "Egg timer complete!" });
-  } catch (error) {
-    console.error("An error occurred:", error);
-    return next(
-      new AppError(
-        "Error while running the egg timer for classic play mode",
-        500
-      )
-    );
+  if (type === "start" && !req.eggTimerControl) {
+    try {
+      console.log(
+        `Classic play: Egg timer set for ${minutes} minutes and ${seconds} seconds`
+      );
+
+      req.eggTimerControl = eggTimer(minutes, seconds);
+
+      req.eggTimerControl.startTimer();
+
+      res.status(200).json({
+        status: 200,
+        success: true,
+        message: "Egg timer started!",
+        remainingTime: momenttz()
+          .startOf("day")
+          .milliseconds(minutes * 60 * 1000 + seconds * 1000)
+          .format("HH:mm:ss"),
+      });
+    } catch (error) {
+      console.error("An error occurred:", error);
+      return next(
+        new AppError(
+          "Error while starting the egg timer for classic play mode",
+          500
+        )
+      );
+    }
+  } else if (
+    type === "stop" &&
+    req.eggTimerControl &&
+    req.eggTimerControl.timerActive
+  ) {
+    req.eggTimerControl.stopTimer();
+    res.status(200).json({
+      status: 200,
+      success: true,
+      message: "Egg timer stopped!",
+      remainingTime: momenttz()
+        .startOf("day")
+        .milliseconds(minutes * 60 * 1000 + seconds * 1000)
+        .format("HH:mm:ss"),
+    });
+  } else {
+    return next(new AppError("Invalid request or repeated hit!", 400));
   }
 });
 
