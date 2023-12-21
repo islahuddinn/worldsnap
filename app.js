@@ -29,16 +29,16 @@ const publicPath = path.join(__dirname, "./public");
 app.use(express.static(publicPath));
 app.get("/privacy-policy", (req, res) => {
   // Send the privacy policy file
-  res.sendFile(path.join(publicPath, "privacy-policy.txt"));
+  res.sendFile(path.join(publicPath, "privacy-policy.html"));
 });
 app.get("/terms-of-service", (req, res) => {
   // Send the privacy policy file
-  res.sendFile(path.join(publicPath, "terms-of-use.txt"));
+  res.sendFile(path.join(publicPath, "terms-of-use.html"));
 });
 
 app.get("/about-us", (req, res) => {
   // Send the about us file
-  res.sendFile(path.join(publicPath, "about-us.txt"));
+  res.sendFile(path.join(publicPath, "about-us.html"));
 });
 
 //set security http headers
